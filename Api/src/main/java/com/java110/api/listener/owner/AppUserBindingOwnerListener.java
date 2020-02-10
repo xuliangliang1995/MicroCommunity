@@ -77,7 +77,7 @@ public class AppUserBindingOwnerListener extends AbstractServiceApiListener {
         Assert.hasKeyAndValue(reqJson, "areaCode", "未包含小区地区");
         Assert.hasKeyAndValue(reqJson, "appUserName", "未包含用户名称");
         Assert.hasKeyAndValue(reqJson, "idCard", "未包含身份证号");
-        Assert.hasKeyAndValue(reqJson, "link", "未包含联系电话");
+        //Assert.hasKeyAndValue(reqJson, "link", "未包含联系电话");
         //判断是否有用户ID
         Map<String, String> headers = event.getDataFlowContext().getRequestCurrentHeaders();
 
