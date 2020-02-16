@@ -577,6 +577,18 @@ public class BusinessTypeConstant {
     public static final String BUSINESS_TYPE_DELETE_ORG_STAFF_REL ="140200050001";
 
     /**
+     *  保存员工组织关系
+     * 14开头  3保存
+     */
+    public static final String BUSINESS_TYPE_SAVE_ORG_COMMUNITY="140300030001";
+
+    public static final String BUSINESS_TYPE_UPDATE_ORG_COMMUNITY="140300040001";
+    /**
+     *  删除员工组织关系
+     */
+    public static final String BUSINESS_TYPE_DELETE_ORG_COMMUNITY ="140300050001";
+
+    /**
      *  保存 资源
      * 14开头  3保存
      */
@@ -818,17 +830,45 @@ public class BusinessTypeConstant {
 
     /**
      *  保存巡检点
-     * 14开头  3保存
      */
-    public static final String BUSINESS_TYPE_SAVE_INSPECTION="300200030001";
+    public static final String BUSINESS_TYPE_SAVE_INSPECTION="510200030001";
 
     /**
      * 修改巡检点
      */
-    public static final String BUSINESS_TYPE_UPDATE_INSPECTION="300200040001";
+    public static final String BUSINESS_TYPE_UPDATE_INSPECTION="510200040001";
     /**
      *  删除巡检点
      */
-    public static final String BUSINESS_TYPE_DELETE_INSPECTION ="300200050001";
+    public static final String BUSINESS_TYPE_DELETE_INSPECTION ="510200050001";
+
+    /**
+     *  保存巡检路线
+     * 3保存
+     */
+    public static final String BUSINESS_TYPE_SAVE_INSPECTION_ROUTE="500200030001";
+
+    /**
+     * 修改巡检路线
+     * 4 修改
+     */
+    public static final String BUSINESS_TYPE_UPDATE_INSPECTION_ROUTE="500200040001";
+    /**
+     *  删除巡检路线
+     * 5 删除
+     */
+    public static final String BUSINESS_TYPE_DELETE_INSPECTION_ROUTE ="500200050001";
+    /**
+     *  保存巡检路线设备关联关系
+     * 3保存
+     */
+    public static final String BUSINESS_TYPE_SAVE_INSPECTION_ROUTE_MACHINE_REL="500200030002";
+
+    /**
+     *  删除巡检路线设备关联关系
+     *  5 删除
+     */
+    public static final String BUSINESS_TYPE_DELETE_INSPECTION_ROUTE_MACHINE_REL ="500200050002";
+
 
 }
