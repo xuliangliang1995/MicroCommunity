@@ -6,10 +6,10 @@ import com.java110.core.base.smo.BaseServiceSMO;
 import com.java110.core.smo.file.IFileInnerServiceSMO;
 import com.java110.dto.file.FileDto;
 import com.java110.core.client.FtpUploadTemplate;
+import org.apache.commons.net.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import sun.misc.BASE64Encoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class FileInnerServiceSMOImpl extends BaseServiceSMO implements IFileInne
                 java110Properties.getFtpPort(), java110Properties.getFtpUserName(),
                 java110Properties.getFtpUserPassword());
 
-        String context = new BASE64Encoder().encode(fileImg);
+        String context = Base64.encodeBase64String(fileImg);
 
         fileDto.setContext(context);
         fileDtos.add(fileDto);
