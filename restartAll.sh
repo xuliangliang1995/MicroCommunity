@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#docker-compose -f ./eureka/docker/docker-compose.yml       restart;
+docker-compose -f ./eureka/docker/docker-compose.yml       restart;
 docker-compose -f ./Api/docker/docker-compose.yml        restart;
 docker-compose -f ./OrderService/docker/docker-compose.yml      restart;
 docker-compose -f ./CommunityService/docker/docker-compose.yml       restart;
