@@ -13,7 +13,7 @@ services:
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net
-       mem_limit: 1024m
+       mem_limit: 2048m
 #       extra_hosts:
 #         - "dev.java110.com:192.168.8.143"
 #         - "dev.db.java110.com:192.168.8.143"

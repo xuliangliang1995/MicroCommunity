@@ -9,10 +9,9 @@ services:
        ports:
        - "8008:8008"
        volumes:
-       - ../target/Api.jar:/target/Api.jar
-       - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
+       - /etc/hosts:/etc/hosts
        networks:
-       - java110-net
+         - java110-net
        mem_limit: 2048m
 #       extra_hosts:
 #         - "dev.java110.com:192.168.8.143"
