@@ -12,7 +12,7 @@ services:
        - ../target/Api.jar:/root/target/Api.jar
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
-       - java110-net
+       - java110-nefft
        mem_limit: 1024m
 #       extra_hosts:
 #         - "dev.java110.com:192.168.8.143"
