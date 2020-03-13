@@ -1,4 +1,4 @@
-FROM java8
+FROM java:8
 MAINTAINER wuxw <928255095@qq.com>
 
 ADD target/CommentService.jar /root/target/

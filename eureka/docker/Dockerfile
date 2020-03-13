@@ -1,4 +1,4 @@
-FROM java8
+FROM java:8
 MAINTAINER wuxw <wuxw7@asiainfo.com>
 
 ADD bin/start_eureka.sh /root/
