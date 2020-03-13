@@ -5,6 +5,7 @@ git pull origin locale
 mvn clean install -Dmaven.test.skip=true
 mvn package -Dmaven.test.skip=true
 
+#docker images|grep docker_|awk '{print $3 }'|xargs docker rmi
 docker-compose -f ./eureka/docker/docker-compose.yml       up -d --build --force-recreate;
 docker-compose -f ./Api/docker/docker-compose.yml       up -d --build --force-recreate;
 docker-compose -f ./OrderService/docker/docker-compose.yml       up -d --build --force-recreate;

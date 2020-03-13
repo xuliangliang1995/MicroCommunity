@@ -1,10 +1,9 @@
-FROM registry.cn-beijing.aliyuncs.com/sxd/ubuntu-java8:1.0
-MAINTAINER wuxw <928255095@qq.com>
+FROM java:8
 
+MAINTAINER xuliangliang
 
-ADD bin/start_web.sh /root/
+ADD ../target/*.jar bootstrap.jar
 
+EXPOSE 8443
 
-RUN chmod u+x /root/start_web.sh
-
-CMD ["/root/start_web.sh","dev"]
+ENTRYPOINT ["java","-jar", "-Dspring.profiles.active=dev", "bootstrap.jar"]
