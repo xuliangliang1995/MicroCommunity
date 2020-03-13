@@ -10,7 +10,7 @@ services:
        - "8011:8011"
        volumes:
        - ../target/HardwareAdapationService.jar:/target/HardwareAdapationService.jar
-       - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
+       - /etc/hosts:/etc/hosts
        networks:
        - java110-net
        mem_limit: 2048m

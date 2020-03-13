@@ -10,7 +10,7 @@ services:
        - "443:8443"
        volumes:
        - ../target/WebService.jar:/target/WebService.jar
-       - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
+       - /etc/hosts:/etc/hosts
        networks:
        - java110-net
        mem_limit: 2048m
