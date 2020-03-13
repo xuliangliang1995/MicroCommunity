@@ -1,4 +1,4 @@
-FROM registry.cn-beijing.aliyuncs.com/sxd/ubuntu-java8:1.0
+FROM java8
 MAINTAINER wuxw <928255095@qq.com>
 
 ADD bin/start_user.sh /root/

@@ -1,9 +1,10 @@
-FROM java:8
+FROM java8
+MAINTAINER wuxw <928255095@qq.com>
 
-MAINTAINER xuliangliang
 
-ADD ../target/*.jar bootstrap.jar
+ADD bin/start_web.sh /root/
 
-EXPOSE 8443
 
-ENTRYPOINT ["java","-jar", "-Dspring.profiles.active=dev", "bootstrap.jar"]
+RUN chmod u+x /root/start_web.sh
+
+CMD ["/root/start_web.sh","dev"]
