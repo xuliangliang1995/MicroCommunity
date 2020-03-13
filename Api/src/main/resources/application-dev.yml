@@ -77,4 +77,5 @@ kafka:
 
 logging:
   level:
+    root: debug
     com.java110.core.smo: debug
