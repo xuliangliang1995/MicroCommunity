@@ -10,7 +10,7 @@ services:
        - "8012:8012"
        volumes:
        - ../target/AppFrontService.jar:/root/target/AppFrontService.jar
-       - /etc/hosts:/etc/hosts
+       - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net
        mem_limit: 1024m

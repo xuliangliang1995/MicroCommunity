@@ -10,7 +10,7 @@ services:
        - "8006:8006"
        volumes:
        - ../target/StoreService.jar:/root/target/StoreService.jar
-       - /etc/hosts:/etc/hosts
+       - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net
        mem_limit: 1024m

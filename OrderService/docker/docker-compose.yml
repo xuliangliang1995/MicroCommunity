@@ -10,7 +10,7 @@ services:
        - "8001:8001"
        volumes:
        - ../target/OrderService.jar:/root/target/OrderService.jar
-       - /etc/hosts:/etc/hosts
+       - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net
        mem_limit: 1024m
