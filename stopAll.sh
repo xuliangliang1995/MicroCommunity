@@ -8,3 +8,4 @@ docker-compose -f ./UserService/docker/docker-compose.yml       down;
 docker-compose -f ./WebService/docker/docker-compose.yml       down;
 docker-compose -f ./FeeService/docker/docker-compose.yml       down;
 docker-compose -f ./CommunityService/docker/docker-compose.yml       down;
+docker-compose -f ./CommonService/docker/docker-compose.yml       down;
