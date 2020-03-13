@@ -9,7 +9,7 @@ services:
        ports:
        - "8001:8001"
        volumes:
-       - ../target/OrderService.jar:/root/target/OrderService.jar
+       - ../target/OrderService.jar:/target/OrderService.jar
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net

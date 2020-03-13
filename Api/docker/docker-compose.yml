@@ -9,7 +9,7 @@ services:
        ports:
        - "8008:8008"
        volumes:
-       - ../target/Api.jar:/root/target/Api.jar
+       - ../target/Api.jar:/target/Api.jar
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net

@@ -9,7 +9,7 @@ services:
        ports:
        - "8002:8002"
        volumes:
-       - ../target/UserService.jar:/root/target/UserService.jar
+       - ../target/UserService.jar:/target/UserService.jar
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net

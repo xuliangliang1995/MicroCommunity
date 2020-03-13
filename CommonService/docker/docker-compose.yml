@@ -9,7 +9,7 @@ services:
        ports:
        - "8005:8005"
        volumes:
-       - ../target/CommonService.jar:/root/target/CommonService.jar
+       - ../target/CommonService.jar:/target/CommonService.jar
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net

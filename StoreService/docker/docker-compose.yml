@@ -9,7 +9,7 @@ services:
        ports:
        - "8006:8006"
        volumes:
-       - ../target/StoreService.jar:/root/target/StoreService.jar
+       - ../target/StoreService.jar:/target/StoreService.jar
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net

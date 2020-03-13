@@ -9,7 +9,7 @@ services:
        ports:
        - "8012:8012"
        volumes:
-       - ../target/AppFrontService.jar:/root/target/AppFrontService.jar
+       - ../target/AppFrontService.jar:/target/AppFrontService.jar
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net

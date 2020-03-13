@@ -9,7 +9,7 @@ services:
        ports:
        - "8761:8761"
        volumes:
-#       - ../target/eureka.jar:/root/target/eureka.jar
+       - ../target/eureka.jar:/target/eureka.jar
        - /home/xuliang/docker-volumes/etc/hosts:/etc/hosts
        networks:
        - java110-net
