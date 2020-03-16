@@ -17,7 +17,7 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 30
     preferIpAddress: true
-    instanceId: ${spring.cloud.client.ip-address}:${server.port}
+    instanceId: ${eureka.instance.ip-address}:${server.port}
     prefer-ip-address: true
     ip-address: 62.234.79.191
   client:
