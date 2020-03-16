@@ -18,6 +18,7 @@ eureka:
     leaseExpirationDurationInSeconds: 30
     preferIpAddress: true
     instanceId: ${spring.cloud.client.ip-address}:${server.port}
+    ip-address: 62.234.79.191
   client:
     serviceUrl:
       defaultZone: http://dev.java110.com:8761/eureka/
