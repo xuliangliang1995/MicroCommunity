@@ -15,5 +15,6 @@ docker-compose -f ./UserService/docker/docker-compose.yml       up -d --build --
 docker-compose -f ./WebService/docker/docker-compose.yml       up -d --build --force-recreate;
 docker-compose -f ./FeeService/docker/docker-compose.yml       up -d --build --force-recreate;
 docker-compose -f ./CommonService/docker/docker-compose.yml       up -d --build --force-recreate;
+docker-compose -f ./AppFrontService/docker/docker-compose.yml     up -d --build --force-recreate;
 # 删除无用镜像
 docker images|grep none|awk '{print $3 }'|xargs docker rmi
