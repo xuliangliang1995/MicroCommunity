@@ -5,7 +5,7 @@ jedis:
       maxIdle: 20
       maxWaitMillis: 20000
     host: test.redis.java110.com
-    port: 6379
+    port: 19736
     timeout: 3000
     password:
 
@@ -35,7 +35,7 @@ spring:
   redis:
     database: 0
     host: test.redis.java110.com
-    port: 6379
+    port: 19736
     pool:
       max-active: 300
       max-wait: 10000
