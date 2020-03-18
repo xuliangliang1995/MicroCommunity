@@ -35,11 +35,10 @@ public class FileInnerServiceSMOImpl extends BaseServiceSMO implements IFileInne
 
         //int saveFileFlag = fileServiceDaoImpl.saveFile(BeanConvertUtil.beanCovertMap(fileDto));
 
-        String fileName = aliOssUploadTemplate.uploadBase64Img(fileDto.getContext());
-
-        /*String fileName = ftpUploadTemplate.upload(fileDto.getContext(), java110Properties.getFtpServer(),
+        //String fileName = aliOssUploadTemplate.uploadBase64Img(fileDto.getContext());
+        String fileName = ftpUploadTemplate.upload(fileDto.getContext(), java110Properties.getFtpServer(),
                 java110Properties.getFtpPort(), java110Properties.getFtpUserName(),
-                java110Properties.getFtpUserPassword(), java110Properties.getFtpPath());*/
+                java110Properties.getFtpUserPassword(), java110Properties.getFtpPath());
 
         return fileName;
     }

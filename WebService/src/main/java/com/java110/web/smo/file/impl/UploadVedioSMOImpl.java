@@ -45,10 +45,10 @@ public class UploadVedioSMOImpl extends BaseComponentSMO implements IUploadVedio
             throw new IllegalArgumentException("上传文件超过200兆");
         }
 
-        String fileName = aliOssUploadTemplate.upload(uploadFile);
-        /*String fileName = ftpUploadTemplate.upload(uploadFile, java110Properties.getFtpServer(),
+//        String fileName = aliOssUploadTemplate.upload(uploadFile);
+        String fileName = ftpUploadTemplate.upload(uploadFile, java110Properties.getFtpServer(),
                 java110Properties.getFtpPort(), java110Properties.getFtpUserName(),
-                java110Properties.getFtpUserPassword(), java110Properties.getFtpPath());*/
+                java110Properties.getFtpUserPassword(), java110Properties.getFtpPath());
         JSONObject outParam = new JSONObject();
         outParam.put("fileName", uploadFile.getOriginalFilename());
         outParam.put("realFileName", fileName);
