@@ -11,6 +11,7 @@ services:
        volumes:
        - ../target/CommunityService.jar:/target/CommunityService.jar
        - /etc/hosts:/etc/hosts
+       - /etc/localtime:/etc/localtime
        networks:
        - java110-net
        mem_limit: 2048m
