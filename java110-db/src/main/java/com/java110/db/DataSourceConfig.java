@@ -1,6 +1,8 @@
 package com.java110.db;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlShardingDataSourceFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -38,6 +40,7 @@ public class DataSourceConfig {
      * @since 1.8
      */
     @Bean
+    @ConfigurationProperties(prefix = "hc.datasource")
     public DataSource dataSource() throws SQLException, IOException {
 //        YamlShardingConfiguration config = parse();
 //        YamlShardingRuleConfiguration rule = config.getShardingRule();
@@ -48,7 +51,8 @@ public class DataSourceConfig {
 //        return ShardingDataSourceFactory.createDataSource(config.getDataSources(),
 //                rule.getShardingRuleConfiguration(), config.getConfigMap(), config.getProps());
 
-        return YamlShardingDataSourceFactory.createDataSource(getYmlFile());
+        //return YamlShardingDataSourceFactory.createDataSource(getYmlFile());
+        return new DruidDataSource();
     }
 
     /**
