@@ -2,10 +2,12 @@ package com.java110.web.smo.file.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.java110.config.properties.code.Java110Properties;
+import com.java110.core.client.AliOssUploadTemplate;
 import com.java110.core.component.BaseComponentSMO;
 import com.java110.core.context.IPageData;
 import com.java110.core.client.FtpUploadTemplate;
 import com.java110.web.smo.file.IUploadVedioSMO;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * 添加小区服务实现类
@@ -30,6 +34,9 @@ public class UploadVedioSMOImpl extends BaseComponentSMO implements IUploadVedio
     @Autowired
     private FtpUploadTemplate ftpUploadTemplate;
 
+    @Autowired
+    private AliOssUploadTemplate aliOssUploadTemplate;
+
     @Override
     public ResponseEntity<Object> upload(IPageData pd, MultipartFile uploadFile) throws IOException {
 
@@ -38,9 +45,10 @@ public class UploadVedioSMOImpl extends BaseComponentSMO implements IUploadVedio
             throw new IllegalArgumentException("上传文件超过200兆");
         }
 
-        String fileName = ftpUploadTemplate.upload(uploadFile, java110Properties.getFtpServer(),
+        String fileName = aliOssUploadTemplate.upload(uploadFile);
+        /*String fileName = ftpUploadTemplate.upload(uploadFile, java110Properties.getFtpServer(),
                 java110Properties.getFtpPort(), java110Properties.getFtpUserName(),
-                java110Properties.getFtpUserPassword(), java110Properties.getFtpPath());
+                java110Properties.getFtpUserPassword(), java110Properties.getFtpPath());*/
         JSONObject outParam = new JSONObject();
         outParam.put("fileName", uploadFile.getOriginalFilename());
         outParam.put("realFileName", fileName);
