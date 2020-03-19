@@ -118,6 +118,7 @@ public class FtpUploadTemplate {
             ftpClient.login(userName, userPassword);
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            ftpClient.setControlEncoding("UTF-8");
             mkDir(ftpClient, ftpPath);// 创建目录
             // 设置上传目录 must
             ftpClient.changeWorkingDirectory(ftpPath);
