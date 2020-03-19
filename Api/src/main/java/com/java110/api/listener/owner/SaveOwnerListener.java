@@ -70,6 +70,8 @@ public class SaveOwnerListener extends AbstractServiceApiDataFlowListener {
         DataFlowContext dataFlowContext = event.getDataFlowContext();
         AppService service = event.getAppService();
 
+        logger.info("服务地址：" + service.getUrl());
+
         String paramIn = dataFlowContext.getReqData();
 
         //校验数据
