@@ -12,13 +12,13 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入小区ID"
+                                <input type="text" placeholder="请输入写字楼ID"
                                        v-model="communityManageInfo.conditions.communityId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入小区名称"
+                                <input type="text" placeholder="请输入写字楼名称"
                                        v-model="communityManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
@@ -45,11 +45,11 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>小区信息</h5>
+                    <h5>写字楼信息</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddCommunityModal()">
                             <i class="glyphicon glyphicon-plus"></i>
-                            添加小区
+                            添加写字楼
                         </button>
                     </div>
                 </div>
@@ -58,9 +58,9 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>小区ID</th>
-                            <th>小区名称</th>
-                            <!--<th>小区地址</th>-->
+                            <th>写字楼ID</th>
+                            <th>写字楼名称</th>
+                            <!--<th>写字楼地址</th>-->
                             <th>附近地标</th>
                             <th>城市编码</th>
                             <th>状态</th>

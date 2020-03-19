@@ -15,7 +15,7 @@
         },
         _initEvent:function(){
             vc.on('searchFloor','openSearchFloorModel',function(_param){
-                console.log("打开定位小区楼界面")
+                console.log("打开定位写字楼楼界面")
                 $('#searchFloorModel').modal('show');
                 vc.component._refreshSearchFloorData();
                 vc.component._loadAllFloorInfo(1,10);

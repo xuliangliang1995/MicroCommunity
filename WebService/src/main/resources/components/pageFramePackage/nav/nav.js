@@ -119,7 +119,7 @@
                 //说明缓存中没有数据
                 //发送get请求
                 /**
-                 [{community:"123123",name:"测试1小区"},{community:"223123",name:"测试2小区"}]
+                 [{community:"123123",name:"测试1写字楼"},{community:"223123",name:"测试2写字楼"}]
                  **/
                 var param = {
                     params:{
@@ -135,7 +135,7 @@
 
                             if (vm.navCommunityInfo.communityInfos == null || vm.navCommunityInfo.communityInfos.length == 0) {
                                 vm.navCommunityInfo._currentCommunity = {
-                                    name: "还没有入驻小区"
+                                    name: "还没有入驻写字楼"
                                 };
                                 return;
                             }
@@ -144,7 +144,7 @@
                             vc.setCurrentCommunity(vm.navCommunityInfo._currentCommunity);
                             vc.setCommunitys(vm.navCommunityInfo.communityInfos);
 
-                            //对首页做特殊处理，因为首页在加载数据时还没有小区信息 会报错
+                            //对首页做特殊处理，因为首页在加载数据时还没有写字楼信息 会报错
                             if (vm.navCommunityInfo.communityInfos != null && vm.navCommunityInfo.communityInfos.length > 0) {
                                 vc.emit("indexContext", "_queryIndexContextData", {});
                                 vc.emit("indexArrears", "_listArrearsData", {});

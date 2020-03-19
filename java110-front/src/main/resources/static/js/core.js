@@ -43,7 +43,7 @@
         initEvent: _initEvent,
         component: _component,
         destroyedMethod: _destroyedMethod,
-        debug: false,
+        debug: true,
         timers: _timers,
         _map: {}
     };
@@ -257,24 +257,24 @@
         return JSON.parse(window.localStorage.getItem(_key));
     };
 
-    //保存当前小区信息 _communityInfo : {"communityId":"123213","name":"测试小区"}
+    //保存当前写字楼信息 _communityInfo : {"communityId":"123213","name":"测试写字楼"}
     vc.setCurrentCommunity = function (_currentCommunityInfo) {
         window.localStorage.setItem('hc_currentCommunityInfo', JSON.stringify(_currentCommunityInfo));
     };
 
-    //获取当前小区信息
-    // @return   {"communityId":"123213","name":"测试小区"}
+    //获取当前写字楼信息
+    // @return   {"communityId":"123213","name":"测试写字楼"}
     vc.getCurrentCommunity = function () {
         return JSON.parse(window.localStorage.getItem('hc_currentCommunityInfo'));
     };
 
-    //保存当前小区信息 _communityInfos : [{"communityId":"123213","name":"测试小区"}]
+    //保存当前写字楼信息 _communityInfos : [{"communityId":"123213","name":"测试写字楼"}]
     vc.setCommunitys = function (_communityInfos) {
         window.localStorage.setItem('hc_communityInfos', JSON.stringify(_communityInfos));
     };
 
-    //获取当前小区信息
-    // @return   {"communityId":"123213","name":"测试小区"}
+    //获取当前写字楼信息
+    // @return   {"communityId":"123213","name":"测试写字楼"}
     vc.getCommunitys = function () {
         return JSON.parse(window.localStorage.getItem('hc_communityInfos'));
     };

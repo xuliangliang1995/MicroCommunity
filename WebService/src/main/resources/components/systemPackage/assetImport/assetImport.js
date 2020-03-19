@@ -35,7 +35,7 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "还未入驻小区，请先入驻小区"
+                            errInfo: "还未入驻写字楼，请先入驻写字楼"
                         }
                     ]
                 });

@@ -73,7 +73,7 @@
                                 {
                                     limit:"required",
                                     param:"",
-                                    errInfo:"小区楼房屋不能为空"
+                                    errInfo:"写字楼楼房屋不能为空"
                                 }
                             ],
                             'addRoomInfo.roomNum':[

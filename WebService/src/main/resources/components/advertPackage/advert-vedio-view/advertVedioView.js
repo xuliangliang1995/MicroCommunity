@@ -29,7 +29,7 @@
 
                 var _communityId = vc.getParam("communityId");
                 if (!vc.notNull(_communityId)) {
-                    vc.toast("请求参数中未包含小区信息");
+                    vc.toast("请求参数中未包含写字楼信息");
                     return;
                 }
 

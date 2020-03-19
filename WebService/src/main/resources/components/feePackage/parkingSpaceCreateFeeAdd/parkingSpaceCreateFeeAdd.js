@@ -93,7 +93,7 @@
             saveParkingSpaceCreateFeeInfo: function() {
 
                 vc.component.parkingSpaceCreateFeeAddInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.parkingSpaceCreateFeeAddInfo.locationTypeCd == '1000') { // 小区ID
+                if (vc.component.parkingSpaceCreateFeeAddInfo.locationTypeCd == '1000') { // 写字楼ID
                     vc.component.parkingSpaceCreateFeeAddInfo.locationObjId = vc.component.parkingSpaceCreateFeeAddInfo.communityId;
                 } else if (vc.component.parkingSpaceCreateFeeAddInfo.locationTypeCd == '2000') {
                 } else if (vc.component.parkingSpaceCreateFeeAddInfo.locationTypeCd == '3000') {

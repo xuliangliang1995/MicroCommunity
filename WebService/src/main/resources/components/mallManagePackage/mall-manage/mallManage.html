@@ -1,0 +1,124 @@
+<div class="row" id="component">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <div :class="['m-2', {'d-flex': orderAndMallTab == 1}]">
+                    <div class="btn-group mr-5" role="group">
+                        <button type="button"
+                                style="width:150px;"
+                                :class="['btn', 'btn-lg', 'btn-secondary', {'btn-primary': orderAndMallTab == 1}]"
+                                @click="orderAndMallTab = 1">
+                            订单管理
+                        </button>
+                        <button type="button"
+                            style="width:150px;"
+                            :class="['btn', 'btn-lg', 'btn-secondary', {'btn-primary': orderAndMallTab != 1}]"
+                            @click="orderAndMallTab = 2">
+                            福利商城管理
+                        </button>
+                    </div>
+
+                    <div>
+                        <template v-if="orderAndMallTab = 2">
+                            <div class="btn-group mr-5" role="group">
+                                <button type="button"
+                                        style="width:100px;"
+                                        :class="['btn', 'btn-sm', 'btn-secondary', {'btn-primary': shelvesTab == 1}]"
+                                        @click="shelvesTab = 1">
+                                    上架商品
+                                </button>
+                                <button type="button"
+                                        style="width:100px;"
+                                        :class="['btn', 'btn-sm', 'btn-secondary', {'btn-primary': shelvesTab != 1}]"
+                                        @click="shelvesTab = 2">
+                                    下架商品
+                                </button>
+                            </div>
+                        </template>
+                        <template v-if="shelvesTab != 2 || orderAndMallTab == 1 ">
+                            <form class="form-inline">
+                                商品信息:<input class="form-control ml-1 mr-2"
+                                            type="search"
+                                            placeholder="商品ID、标题">
+                                <template v-if="orderAndMallTab == 1">
+                                    用户信息:<input class="form-control ml-1 mr-4"
+                                                type="search"
+                                                placeholder="姓名、联系电话">
+                                </template>
+                                <button class="btn btn-primary" >搜索</button>
+                            </form>
+                        </template>
+                        <template v-if="shelvesTab == 1 && orderAndMallTab == 2">
+                            <button class="btn btn-primary pull-right">上架新商品</button>
+                        </template>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <!-- 订单管理表 -->
+                <template v-if="shelvesTab == 1">
+                    <table class="footable table table-stripped toggle-arrow-tiny"
+                           data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">下单时间</th>
+                            <th class="text-center">用户信息</th>
+                            <th class="text-center">商品信息</th>
+                            <th class="text-center">单价(现价)</th>
+                            <th class="text-center">购买量</th>
+                            <th class="text-center">实付金额</th>
+                            <th class="text-center">订单状态</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td colspan="8">
+                                数据内容
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </template>
+
+                <!-- 商品上下架表 -->
+                <template v-else>
+                    <table  class="footable table table-stripped toggle-arrow-tiny"
+                            data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">上架时间</th>
+                            <th class="text-center">商品信息</th>
+                            <th class="text-center">单价(现价)</th>
+                            <th class="text-center">剩余库存量</th>
+                            <th class="text-center">已售量</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td colspan="8">
+                                数据内容
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </template>
+            </div>
+        </div>
+    </div>
+</div>

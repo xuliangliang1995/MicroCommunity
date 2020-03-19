@@ -108,7 +108,7 @@
             saveRoomCreateFeeInfo: function() {
 
                 vc.component.roomCreateFeeAddInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.roomCreateFeeAddInfo.locationTypeCd == '1000') { //大门时直接写 小区ID
+                if (vc.component.roomCreateFeeAddInfo.locationTypeCd == '1000') { //大门时直接写 写字楼ID
                     vc.component.roomCreateFeeAddInfo.locationObjId = vc.component.roomCreateFeeAddInfo.communityId;
                 } else if (vc.component.roomCreateFeeAddInfo.locationTypeCd == '2000') {
                     vc.component.roomCreateFeeAddInfo.locationObjId = vc.component.roomCreateFeeAddInfo.unitId;

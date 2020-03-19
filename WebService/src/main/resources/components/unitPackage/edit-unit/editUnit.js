@@ -32,7 +32,7 @@
                                 {
                                     limit:"required",
                                     param:"",
-                                    errInfo:"小区楼不能为空"
+                                    errInfo:"写字楼楼不能为空"
                                 }
                             ],
                             'editUnitInfo.unitNum':[

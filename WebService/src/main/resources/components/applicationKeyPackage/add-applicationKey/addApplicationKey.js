@@ -203,7 +203,7 @@
             },
             saveApplicationKeyInfo: function () {
                 vc.component.addApplicationKeyInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.addApplicationKeyInfo.locationTypeCd != '2000' && vc.component.addApplicationKeyInfo.locationTypeCd != '3000') { //大门时直接写 小区ID
+                if (vc.component.addApplicationKeyInfo.locationTypeCd != '2000' && vc.component.addApplicationKeyInfo.locationTypeCd != '3000') { //大门时直接写 写字楼ID
                     vc.component.addApplicationKeyInfo.locationObjId = vc.component.addApplicationKeyInfo.communityId;
                 } else if (vc.component.addApplicationKeyInfo.locationTypeCd == '2000') {
                     vc.component.addApplicationKeyInfo.locationObjId = vc.component.addApplicationKeyInfo.unitId;

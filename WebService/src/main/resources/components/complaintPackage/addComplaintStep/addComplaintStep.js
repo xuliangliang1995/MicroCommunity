@@ -1,5 +1,5 @@
 /**
- 入驻小区
+ 入驻写字楼
  **/
 (function (vc) {
     vc.extends({

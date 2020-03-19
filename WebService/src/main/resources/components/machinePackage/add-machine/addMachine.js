@@ -154,7 +154,7 @@
             },
             saveMachineInfo: function () {
                 vc.component.addMachineInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.addMachineInfo.locationTypeCd != '2000' && vc.component.addMachineInfo.locationTypeCd != '3000') { //大门时直接写 小区ID
+                if (vc.component.addMachineInfo.locationTypeCd != '2000' && vc.component.addMachineInfo.locationTypeCd != '3000') { //大门时直接写 写字楼ID
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.communityId;
                 } else if (vc.component.addMachineInfo.locationTypeCd == '2000') {
                     vc.component.addMachineInfo.locationObjId = vc.component.addMachineInfo.unitId;

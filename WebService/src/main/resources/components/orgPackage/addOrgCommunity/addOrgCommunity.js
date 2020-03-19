@@ -70,7 +70,7 @@
                 var _selectCommunitys = vc.component.addOrgCommunityInfo.selectCommunitys;
                 var _tmpCommunitys = vc.component.addOrgCommunityInfo.communitys;
                 if(_selectCommunitys.length <1){
-                    vc.toast("请选择隶属小区");
+                    vc.toast("请选择隶属写字楼");
                     return ;
                 }
                 var _communitys = [];

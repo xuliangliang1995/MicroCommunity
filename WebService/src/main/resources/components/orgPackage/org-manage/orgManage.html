@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <input type="text" placeholder="请选择小区"
+                                        <input type="text" placeholder="请选择写字楼"
                                                v-model="orgManageInfo.conditions.communityId"
                                                class=" form-control">
                                     </div>
@@ -84,7 +84,7 @@
                                     <td class="text-center">{{org.orgLevel == 1 ? '无' : org.parentOrgName}}</td>
                                     <td class="text-right">
                                         <div v-if="org.allowOperation == 'F' && org.belongCommunityId == '9999'">
-                                            隶属所有小区
+                                            隶属所有写字楼
                                         </div>
                                         <div class="btn-group" v-if="org.allowOperation == 'T'">
                                             <button class="btn-white btn btn-xs" v-on:click="_openEditOrgModel(org)">
@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="btn-group" v-if="org.orgLevel == 2 && org.allowOperation == 'T'">
                                             <button class="btn-white btn btn-xs" v-on:click="_openBeyondCommunity(org)">
-                                                隶属小区
+                                                隶属写字楼
                                             </button>
                                         </div>
                                     </td>

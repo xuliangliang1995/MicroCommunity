@@ -69,6 +69,8 @@
                         errInfo: "房屋楼层高度必须为数字"
                     },
                     ],
+                    /*
+                    TODO: 暂时隐藏功能
                     'addRoomViewInfo.apartment': [{
                         limit: "required",
                         param: "",
@@ -79,7 +81,7 @@
                         param: "50",
                         errInfo: "房屋户型不能大于50"
                     },
-                    ],
+                    ],*/
                     'addRoomViewInfo.builtUpArea': [{
                         limit: "required",
                         param: "",

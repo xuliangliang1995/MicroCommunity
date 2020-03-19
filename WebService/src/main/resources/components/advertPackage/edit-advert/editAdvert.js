@@ -241,7 +241,7 @@
             },
             editAdvert: function () {
                 vc.component.editAdvertInfo.communityId = vc.getCurrentCommunity().communityId;
-                if (vc.component.editAdvertInfo.locationTypeCd == '1000') { //大门时直接写 小区ID
+                if (vc.component.editAdvertInfo.locationTypeCd == '1000') { //大门时直接写 写字楼ID
                     vc.component.editAdvertInfo.locationObjId = vc.component.editAdvertInfo.communityId;
                 } else if (vc.component.editAdvertInfo.locationTypeCd == '2000') {
                     vc.component.editAdvertInfo.locationObjId = vc.component.editAdvertInfo.unitId;

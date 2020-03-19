@@ -34,23 +34,23 @@
                     'editCommunityInfo.name': [{
                         limit: "required",
                         param: "",
-                        errInfo: "小区名称不能为空"
+                        errInfo: "写字楼名称不能为空"
                     },
                     {
                         limit: "maxin",
                         param: "4,20",
-                        errInfo: "小区名称必须在4至20字符之间"
+                        errInfo: "写字楼名称必须在4至20字符之间"
                     },
                     ],
                     'editCommunityInfo.address': [{
                         limit: "required",
                         param: "",
-                        errInfo: "小区地址不能为空"
+                        errInfo: "写字楼地址不能为空"
                     },
                     {
                         limit: "maxLength",
                         param: "200",
-                        errInfo: "小区地址不能大于200个字符"
+                        errInfo: "写字楼地址不能大于200个字符"
                     },
                     ],
                     'editCommunityInfo.nearbyLandmarks': [{
@@ -61,31 +61,31 @@
                     {
                         limit: "maxLength",
                         param: "50",
-                        errInfo: "小区附近地标不能大于50个字符"
+                        errInfo: "写字楼附近地标不能大于50个字符"
                     },
                     ],
                     'editCommunityInfo.cityCode': [{
                         limit: "maxLength",
                         param: "12",
-                        errInfo: "小区城市编码不能大于4个字符"
+                        errInfo: "写字楼城市编码不能大于4个字符"
                     },
                     ],
                     'editCommunityInfo.mapX': [{
                         limit: "maxLength",
                         param: "20",
-                        errInfo: "小区城市编码不能大于4个字符"
+                        errInfo: "写字楼城市编码不能大于4个字符"
                     },
                     ],
                     'editCommunityInfo.mapY': [{
                         limit: "maxLength",
                         param: "20",
-                        errInfo: "小区城市编码不能大于4个字符"
+                        errInfo: "写字楼城市编码不能大于4个字符"
                     },
                     ],
                     'editCommunityInfo.communityId': [{
                         limit: "required",
                         param: "",
-                        errInfo: "小区ID不能为空"
+                        errInfo: "写字楼ID不能为空"
                     }]
 
                 });

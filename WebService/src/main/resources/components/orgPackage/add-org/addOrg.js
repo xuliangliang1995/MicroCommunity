@@ -38,11 +38,11 @@
                 if (_param.hasOwnProperty('parentOrgId')) {
                     vc.component.addOrgInfo.parentOrgId = _param.parentOrgId;
                     vc.component.addOrgInfo.orgLevel = _param.orgLevel;
-                    if(_param.orgLevel == 3){ // 部门是不能改小区的，是依赖分公司的小区信息
+                    if(_param.orgLevel == 3){ // 部门是不能改写字楼的，是依赖分公司的写字楼信息
                         vc.component.addOrgInfo.belongCommunityId = _param.belongCommunityId;
                     }
                 }
-                //查询入驻的小区
+                //查询入驻的写字楼
                 vc.component._loadAddEnterCommunitys();
                 $('#addOrgModel').modal('show');
             });

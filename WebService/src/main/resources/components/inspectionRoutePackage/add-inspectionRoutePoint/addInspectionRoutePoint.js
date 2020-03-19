@@ -70,7 +70,7 @@
                 var _selectInspectionPoints = vc.component.addInspectionRoutePointInfo.selectInspectionPoints;
                 var _tmpCommunitys = vc.component.addInspectionRoutePointInfo.inspectionPoints;
                 if(_selectInspectionPoints.length <1){
-                    vc.toast("请选择隶属小区");
+                    vc.toast("请选择隶属写字楼");
                     return ;
                 }
                 var _inspectionPoints = [];
