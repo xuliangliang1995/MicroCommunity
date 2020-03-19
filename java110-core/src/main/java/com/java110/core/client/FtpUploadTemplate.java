@@ -136,6 +136,7 @@ public class FtpUploadTemplate {
                 ftpClient.deleteFile(fs[0].getName());
             }
             InputStream is = uploadFile.getInputStream();
+            ftpClient.enterLocalPassiveMode();
             boolean saveFlag = ftpClient.storeFile(fileName, is);
             is.close();
             if (!saveFlag) {
