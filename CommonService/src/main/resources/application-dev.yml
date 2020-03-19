@@ -105,7 +105,3 @@ kafka:
     linger: 1
     buffer:
       memory: 40960
-
-logging:
-  level:
-    root: debug
