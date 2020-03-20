@@ -2,8 +2,8 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <div :class="['m-2', {'d-flex': orderAndMallTab == 1}]">
-                    <div class="btn-group mr-5" role="group">
+                <div :class="{'d-flex': orderAndMallTab == 1}">
+                    <div class="btn-group mr-5 m-3" role="group">
                         <button type="button"
                                 style="width:150px;"
                                 :class="['btn', 'btn-lg', 'btn-secondary', {'btn-primary': orderAndMallTab == 1}]"
@@ -12,24 +12,24 @@
                         </button>
                         <button type="button"
                             style="width:150px;"
-                            :class="['btn', 'btn-lg', 'btn-secondary', {'btn-primary': orderAndMallTab != 1}]"
+                            :class="['btn', 'btn-lg', 'btn-secondary', {'btn-primary': orderAndMallTab == 2}]"
                             @click="orderAndMallTab = 2">
                             福利商城管理
                         </button>
                     </div>
 
-                    <div>
-                        <template v-if="orderAndMallTab = 2">
+                    <div class="p-3 d-flex position-relative">
+                        <template v-if="orderAndMallTab == 2">
                             <div class="btn-group mr-5" role="group">
                                 <button type="button"
-                                        style="width:100px;"
-                                        :class="['btn', 'btn-sm', 'btn-secondary', {'btn-primary': shelvesTab == 1}]"
+                                        style="width:100px;height:35px;"
+                                        :class="['btn',  'btn-sm', 'btn-secondary', {'btn-primary': shelvesTab == 1}]"
                                         @click="shelvesTab = 1">
                                     上架商品
                                 </button>
                                 <button type="button"
-                                        style="width:100px;"
-                                        :class="['btn', 'btn-sm', 'btn-secondary', {'btn-primary': shelvesTab != 1}]"
+                                        style="width:100px;height:35px;"
+                                        :class="['btn', 'btn-sm', 'btn-secondary', {'btn-primary': shelvesTab == 2}]"
                                         @click="shelvesTab = 2">
                                     下架商品
                                 </button>
@@ -49,14 +49,20 @@
                             </form>
                         </template>
                         <template v-if="shelvesTab == 1 && orderAndMallTab == 2">
-                            <button class="btn btn-primary pull-right">上架新商品</button>
+                            <button class="btn btn-primary pull-right"
+                                @click="showEditCommodityModal">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                上架新商品
+                            </button>
                         </template>
                     </div>
                 </div>
             </div>
             <div class="ibox-content">
+                <!-- 编辑商品弹窗 -->
+                <vc:create name="editCommodityModal"></vc:create>
                 <!-- 订单管理表 -->
-                <template v-if="shelvesTab == 1">
+                <template v-if="orderAndMallTab == 1">
                     <table class="footable table table-stripped toggle-arrow-tiny"
                            data-page-size="15">
                         <thead>
@@ -118,6 +124,9 @@
                         </tfoot>
                     </table>
                 </template>
+
+                <!-- 查看商品弹窗 -->
+                <vc:create name="viewCommodityModal"></vc:create>
             </div>
         </div>
     </div>

@@ -1,0 +1,73 @@
+<div id="editCommodityModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    编辑商品
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </h3>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">配图</label>
+                        <div class="col-sm-10">
+                            <img src="http://iph.href.lu/100x100">
+                            <img src="http://iph.href.lu/100x100">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">原价</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="haveOriginal" id="noOriginal" value="0" checked>
+                                            <label class="form-check-label mr-4" for="noOriginal">
+                                                无
+                                            </label>
+                                            <input class="form-check-input" type="radio" name="haveOriginal" id="haveOriginal" value="1" checked>
+                                            <label class="form-check-label" for="haveOriginal">
+                                                有
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <template>
+                                        <input type="text" class="form-control">
+                                    </template>
+                                </div>
+                                <div class="col-sm-6 row">
+                                    <label class="col-sm-3 col-form-label">现价</label>
+                                    <input type="text" class="col-sm-8 form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">库存</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="col-sm-4 form-control"
+                                placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">介绍</label>
+                        <div class="col-sm-10">
+                            <vc:create name="wangEditor"
+                                defaultEditor="默认的内容props传递"
+                                parentComponent="editCommodityModal"></vc:create>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                       <button class="btn btn-primary text-content">保存/上传</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

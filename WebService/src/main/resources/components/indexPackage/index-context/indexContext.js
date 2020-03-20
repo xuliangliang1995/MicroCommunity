@@ -9,8 +9,8 @@
                 freeRoomCount:'0',
                 parkingSpaceCount:'0',
                 freeParkingSpaceCount:'0',
-                shopCount:'0',
-                freeShopCount:'0'
+                /*shopCount:'0',
+                freeShopCount:'0'*/
             }
         },
         _initMethod:function(){
