@@ -16,14 +16,22 @@
             shelvesTab: shelvesTab.SHELVES_ON_TAB,
         },
         _initMethod() {
-            console.log(this, '神奇的封装', vc.component.tabStatus);
             this.Vue.config.devtools = true;
         },
         _initEvent() {
 
         },
         methods: {
-
+            /**
+             * 显示编辑商品弹窗
+             * @param {Number} id 商品的id
+             * */
+            showEditCommodityModal(id = 0) {
+                if (typeof id != 'number') {
+                    id = 0;
+                }
+                vc.emit('editCommodityModal', 'show', id);
+            }
         },
     })
 })(window.vc);
