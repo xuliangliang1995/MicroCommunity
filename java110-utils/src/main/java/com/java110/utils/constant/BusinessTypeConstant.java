@@ -124,9 +124,18 @@ public class BusinessTypeConstant {
      */
     public static final String BUSINESS_TYPE_DELETE_CAR_BLACK_WHITE = "112200050001";
 
-
-
-
+    /**
+     * 保存业主/业主成员收货地址
+     */
+    public static final String BUSINESS_TYPE_SAVE_OWNER_DELIVERY_ADDRESS_INFO = "111300030001";
+    /**
+     * 更新业主/业主成员收货地址
+     */
+    public static final String BUSINESS_TYPE_UPDATE_OWNER_DELIVERY_ADDRESS_INFO = "111300040001";
+    /**
+     * 删除业主/业主成员收货地址
+     */
+    public static final String BUSINESS_TYPE_DELETE_OWNER_DELIVERY_ADDRESS_INFO = "111300050001";
 
 
     /**

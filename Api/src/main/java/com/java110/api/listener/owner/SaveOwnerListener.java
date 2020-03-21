@@ -17,6 +17,7 @@ import com.java110.core.context.DataFlowContext;
 import com.java110.core.factory.GenerateCodeFactory;
 import com.java110.entity.center.AppService;
 import com.java110.event.service.api.ServiceDataFlowEvent;
+import com.java110.utils.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,11 +102,13 @@ public class SaveOwnerListener extends AbstractServiceApiDataFlowListener {
             //添加物业费用信息
             businesses.add(addPropertyFee(paramObj, dataFlowContext));
         }
-        if (paramObj.containsKey("ownerPhoto") && !StringUtils.isEmpty(paramObj.getString("ownerPhoto"))) {
+
+        final String PARAM_OWNER_PHOTO = "ownerPhoto";
+        if (paramObj.containsKey(PARAM_OWNER_PHOTO) && !StringUtils.isEmpty(paramObj.getString(PARAM_OWNER_PHOTO))) {
             FileDto fileDto = new FileDto();
             fileDto.setFileId(GenerateCodeFactory.getGeneratorId(GenerateCodeFactory.CODE_PREFIX_file_id));
             fileDto.setFileName(fileDto.getFileId());
-            fileDto.setContext(paramObj.getString("ownerPhoto"));
+            fileDto.setContext(paramObj.getString(PARAM_OWNER_PHOTO));
             fileDto.setSuffix("jpeg");
             fileDto.setCommunityId(paramObj.getString("communityId"));
             String fileName = fileInnerServiceSMOImpl.saveFile(fileDto);
@@ -116,6 +119,10 @@ public class SaveOwnerListener extends AbstractServiceApiDataFlowListener {
 
         }
 
+        final String PARAM_COMPANY_NAME = "companyName";
+        if (paramObj.containsKey(PARAM_COMPANY_NAME) && !StringUtils.isEmpty(paramObj.getString(PARAM_COMPANY_NAME))) {
+            businesses.add(addOwnerDeliveryAddress(paramObj, dataFlowContext));
+        }
         /*if ("ON".equals(MappingCache.getValue("SAVE_MACHINE_TRANSLATE_FLAG"))) {
             addMachineTranslate(paramObj, dataFlowContext);
         }*/
@@ -173,6 +180,32 @@ public class SaveOwnerListener extends AbstractServiceApiDataFlowListener {
         return business;
     }
 
+    /**
+     * 添加业主/业主成员收货地址
+     * @param paramInJson
+     * @param dataFlowContext
+     * @return
+     */
+    private JSONObject addOwnerDeliveryAddress(JSONObject paramInJson, DataFlowContext dataFlowContext) {
+        JSONObject business = JSONObject.parseObject("{\"datas\":{}}");
+        business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_SAVE_OWNER_DELIVERY_ADDRESS_INFO);
+        business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
+        JSONObject businessOwnerDeliveryAddress = new JSONObject();
+        /*"businessOwnerDeliveryAddressInfo": {
+            "companyFloor":"填写具体值",
+                    "companyName":"填写具体值",
+                    "ownerId":"填写具体值",
+                    "userId":"填写具体值",
+                    "addressId":"填写具体值",
+                    "memberId":"填写具体值"*/
+        businessOwnerDeliveryAddress.put("companyName", paramInJson.getString("companyName"));
+        businessOwnerDeliveryAddress.put("companyFloor", paramInJson.getIntValue("companyFloor"));
+        businessOwnerDeliveryAddress.put("memberId", paramInJson.getString("ownerId"));
+        businessOwnerDeliveryAddress.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
+        businessOwnerDeliveryAddress.put("addressId", -1);
+        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessOwnerDeliveryAddress", businessOwnerDeliveryAddress);
+        return business;
+    }
 
     /**
      * 添加小区成员
