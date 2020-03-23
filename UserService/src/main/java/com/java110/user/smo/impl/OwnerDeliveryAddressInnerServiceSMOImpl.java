@@ -10,11 +10,14 @@ import com.java110.core.smo.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * @ClassName FloorInnerServiceSMOImpl
@@ -92,6 +95,19 @@ public class OwnerDeliveryAddressInnerServiceSMOImpl extends BaseServiceSMO impl
     @Override
     public int queryOwnerDeliveryAddresssCount(@RequestBody OwnerDeliveryAddressDto ownerDeliveryAddressDto) {
         return ownerDeliveryAddressServiceDaoImpl.queryOwnerDeliveryAddresssCount(BeanConvertUtil.beanCovertMap(ownerDeliveryAddressDto));    }
+
+    /**
+     * 获取业主/家庭成员收货地址
+     *
+     * @param memberId
+     * @return
+     */
+    @Override
+    public OwnerDeliveryAddressDto getOwnerDeliveryAddress(@PathVariable("memberId") String memberId) {
+        return Optional.ofNullable(ownerDeliveryAddressServiceDaoImpl.getOwnerDeliveryAddress(memberId))
+                .map(map -> BeanConvertUtil.covertBean(map, OwnerDeliveryAddressDto.class))
+                .orElse(null);
+    }
 
     public IOwnerDeliveryAddressServiceDao getOwnerDeliveryAddressServiceDaoImpl() {
         return ownerDeliveryAddressServiceDaoImpl;

@@ -2,11 +2,6 @@ package com.java110.user.dao;
 
 
 import com.java110.utils.exception.DAOException;
-import com.java110.entity.merchant.BoMerchant;
-import com.java110.entity.merchant.BoMerchantAttr;
-import com.java110.entity.merchant.Merchant;
-import com.java110.entity.merchant.MerchantAttr;
-
 
 import java.util.List;
 import java.util.Map;
@@ -77,5 +72,12 @@ public interface IOwnerDeliveryAddressServiceDao {
      * @return 业主收货地址数量
      */
     int queryOwnerDeliveryAddresssCount(Map info);
+
+    /**
+     * 根据 memberId 获取地址
+     * @param memberId
+     * @return
+     */
+    Map getOwnerDeliveryAddress(String memberId);
 
 }

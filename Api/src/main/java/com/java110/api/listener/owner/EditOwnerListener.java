@@ -6,7 +6,10 @@ import com.java110.api.listener.AbstractServiceApiDataFlowListener;
 import com.java110.core.factory.GenerateCodeFactory;
 import com.java110.core.smo.file.IFileInnerServiceSMO;
 import com.java110.core.smo.file.IFileRelInnerServiceSMO;
+import com.java110.core.smo.owner.IOwnerDeliveryAddressInnerServiceSMO;
 import com.java110.core.smo.owner.IOwnerInnerServiceSMO;
+import com.java110.dto.owner.DeliveryAddressDto;
+import com.java110.dto.owner.OwnerDeliveryAddressDto;
 import com.java110.dto.owner.OwnerDto;
 import com.java110.dto.file.FileDto;
 import com.java110.dto.file.FileRelDto;
@@ -52,6 +55,9 @@ public class EditOwnerListener extends AbstractServiceApiDataFlowListener {
 
     @Autowired
     private IFileRelInnerServiceSMO fileRelInnerServiceSMOImpl;
+
+    @Autowired
+    private IOwnerDeliveryAddressInnerServiceSMO ownerDeliveryAddressInnerServiceSMOImpl;
 
     @Override
     public String getServiceCode() {
@@ -100,9 +106,15 @@ public class EditOwnerListener extends AbstractServiceApiDataFlowListener {
             businesses.add(editOwnerPhoto(paramObj, dataFlowContext));
 
         }
+
         //添加小区楼
         businesses.add(editOwner(paramObj));
 
+        // 编辑收货地址信息
+        final String PARAM_COMPANY_NAME = "companyName";
+        if (paramObj.containsKey(PARAM_COMPANY_NAME) && !StringUtils.isEmpty(PARAM_COMPANY_NAME)) {
+            businesses.add(editOwnerDeliveryAddress(paramObj, dataFlowContext));
+        }
 
         JSONObject paramInObj = super.restToCenterProtocol(businesses, dataFlowContext.getRequestCurrentHeaders());
 
@@ -162,6 +174,45 @@ public class EditOwnerListener extends AbstractServiceApiDataFlowListener {
         return business;
     }
 
+    /**
+     * 编辑业主/业主成员收货地址
+     * @param paramInJson
+     * @param dataFlowContext
+     * @return
+     */
+    private JSONObject editOwnerDeliveryAddress(JSONObject paramInJson, DataFlowContext dataFlowContext) {
+        OwnerDeliveryAddressDto addressDto = ownerDeliveryAddressInnerServiceSMOImpl.getOwnerDeliveryAddress(paramInJson.getString("memberId"));
+        if (null != addressDto) {
+            JSONObject business = JSONObject.parseObject("{\"datas\":{}}");
+            business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_UPDATE_OWNER_DELIVERY_ADDRESS_INFO);
+            business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
+            business.put(CommonConstant.HTTP_INVOKE_MODEL, CommonConstant.HTTP_INVOKE_MODEL_S);
+            JSONObject businessOwnerDeliveryAddress = new JSONObject();
+            businessOwnerDeliveryAddress.put("companyName", paramInJson.getString("companyName"));
+            businessOwnerDeliveryAddress.put("companyFloor", paramInJson.getIntValue("companyFloor"));
+            businessOwnerDeliveryAddress.put("memberId", paramInJson.getString("memberId"));
+            businessOwnerDeliveryAddress.put("ownerId", paramInJson.getString("ownerId"));
+            businessOwnerDeliveryAddress.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
+            businessOwnerDeliveryAddress.put("addressId", addressDto.getAddressId());
+            business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessOwnerDeliveryAddress", businessOwnerDeliveryAddress);
+            return business;
+        } else {
+            JSONObject business = JSONObject.parseObject("{\"datas\":{}}");
+            business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_SAVE_OWNER_DELIVERY_ADDRESS_INFO);
+            business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
+            business.put(CommonConstant.HTTP_INVOKE_MODEL, CommonConstant.HTTP_INVOKE_MODEL_S);
+            JSONObject businessOwnerDeliveryAddress = new JSONObject();
+            businessOwnerDeliveryAddress.put("companyName", paramInJson.getString("companyName"));
+            businessOwnerDeliveryAddress.put("companyFloor", paramInJson.getIntValue("companyFloor"));
+            businessOwnerDeliveryAddress.put("memberId", paramInJson.getString("memberId"));
+            businessOwnerDeliveryAddress.put("ownerId", paramInJson.getString("ownerId"));
+            businessOwnerDeliveryAddress.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
+            businessOwnerDeliveryAddress.put("addressId", -1);
+            business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessOwnerDeliveryAddress", businessOwnerDeliveryAddress);
+            return business;
+        }
+
+    }
     /**
      * 添加物业费用
      *
