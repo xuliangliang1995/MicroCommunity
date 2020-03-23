@@ -36,6 +36,9 @@ public class ApiOwnerDataVo extends Vo {
     private String ownerTypeCd;
     private String ownerTypeName;
 
+    private String companyName;
+    private String companyFloor;
+
     private String idCard;
 
     public String getOwnerId() {
@@ -132,5 +135,21 @@ public class ApiOwnerDataVo extends Vo {
 
     public void setOwnerTypeName(String ownerTypeName) {
         this.ownerTypeName = ownerTypeName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyFloor() {
+        return companyFloor;
+    }
+
+    public void setCompanyFloor(String companyFloor) {
+        this.companyFloor = companyFloor;
     }
 }
