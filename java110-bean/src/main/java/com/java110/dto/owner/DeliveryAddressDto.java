@@ -9,6 +9,12 @@ package com.java110.dto.owner;
  */
 public class DeliveryAddressDto {
 
+    public final static DeliveryAddressDto EMPTY_ADDRESS = new DeliveryAddressDto();
+    static {
+        EMPTY_ADDRESS.setCompanyName("");
+        EMPTY_ADDRESS.setCompanyFloor("");
+    }
+
     private String companyName;
 
     private String companyFloor;
