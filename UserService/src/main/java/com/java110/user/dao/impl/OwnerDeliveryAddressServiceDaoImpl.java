@@ -136,7 +136,7 @@ public class OwnerDeliveryAddressServiceDaoImpl extends BaseServiceDao implement
     @Override
     public Map getOwnerDeliveryAddress(String memberId) {
         logger.debug("查询业主收货地址数据 入参 info : {}",memberId);
-        return sqlSessionTemplate.selectOne("ownerDeliveryAddressServiceDaoImpl.getOwnerDeliveryAddress");
+        return sqlSessionTemplate.selectOne("ownerDeliveryAddressServiceDaoImpl.getOwnerDeliveryAddress", memberId);
     }
 
 
