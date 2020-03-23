@@ -20,4 +20,12 @@ public class OwnerDtoWithDeliveryAddress extends OwnerDto {
     public String getCompanyFloor() {
         return companyFloor;
     }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setCompanyFloor(String companyFloor) {
+        this.companyFloor = companyFloor;
+    }
 }
