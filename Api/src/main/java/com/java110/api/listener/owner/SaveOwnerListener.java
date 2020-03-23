@@ -192,16 +192,9 @@ public class SaveOwnerListener extends AbstractServiceApiDataFlowListener {
         business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_SAVE_OWNER_DELIVERY_ADDRESS_INFO);
         business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
         JSONObject businessOwnerDeliveryAddress = new JSONObject();
-        /*"businessOwnerDeliveryAddressInfo": {
-            "companyFloor":"填写具体值",
-                    "companyName":"填写具体值",
-                    "ownerId":"填写具体值",
-                    "userId":"填写具体值",
-                    "addressId":"填写具体值",
-                    "memberId":"填写具体值"*/
         businessOwnerDeliveryAddress.put("companyName", paramInJson.getString("companyName"));
         businessOwnerDeliveryAddress.put("companyFloor", paramInJson.getIntValue("companyFloor"));
-        businessOwnerDeliveryAddress.put("memberId", paramInJson.getString("ownerId"));
+        businessOwnerDeliveryAddress.put("memberId", paramInJson.getString("memberId"));
         businessOwnerDeliveryAddress.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
         businessOwnerDeliveryAddress.put("addressId", -1);
         business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessOwnerDeliveryAddress", businessOwnerDeliveryAddress);
