@@ -19,7 +19,7 @@ eureka:
     preferIpAddress: true
     instanceId: ${eureka.instance.ip-address}:${server.port}
     prefer-ip-address: true
-    ip-address: 127.0.0.1
+    ip-address: 62.234.79.191
   client:
     serviceUrl:
       defaultZone: http://dev.java110.com:8761/eureka/
