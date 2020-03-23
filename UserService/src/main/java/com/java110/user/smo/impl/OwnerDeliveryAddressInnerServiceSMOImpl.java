@@ -10,6 +10,7 @@ import com.java110.core.smo.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
 import com.java110.dto.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -102,7 +103,7 @@ public class OwnerDeliveryAddressInnerServiceSMOImpl extends BaseServiceSMO impl
      * @return
      */
     @Override
-    public OwnerDeliveryAddressDto getOwnerDeliveryAddress(String memberId) {
+    public OwnerDeliveryAddressDto getOwnerDeliveryAddress(@PathVariable("memberId") String memberId) {
         return Optional.ofNullable(ownerDeliveryAddressServiceDaoImpl.getOwnerDeliveryAddress(memberId))
                 .map(map -> BeanConvertUtil.covertBean(map, OwnerDeliveryAddressDto.class))
                 .orElse(null);
