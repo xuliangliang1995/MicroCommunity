@@ -7,6 +7,7 @@ import com.java110.core.annotation.Java110Listener;
 import com.java110.core.context.DataFlowContext;
 import com.java110.core.smo.owner.IOwnerDeliveryAddressInnerServiceSMO;
 import com.java110.core.smo.owner.IOwnerInnerServiceSMO;
+import com.java110.dto.owner.DeliveryAddressDto;
 import com.java110.dto.owner.OwnerDeliveryAddressDto;
 import com.java110.dto.owner.OwnerDto;
 import com.java110.dto.owner.converter.IOwnerConverter;
@@ -81,7 +82,8 @@ public class QueryOwnerMembersListener extends AbstractServiceApiDataFlowListene
                     List<OwnerDeliveryAddressDto> addressList = ownerDeliveryAddressInnerServiceSMOImpl.queryOwnerDeliveryAddresss(example);
 
                     if (CollectionUtils.isNotEmpty(addressList)) {
-                        return ownerConverter.ownerDtoAttachDeliveryAddress(owner, addressList.get(0));
+                        DeliveryAddressDto addressDto = ownerConverter.ownerDeliveryAddress2DeliveryAddress(addressList.get(0));
+                        return ownerConverter.ownerDtoAttachDeliveryAddress(owner, addressDto);
                     }
                     return owner;
                 }).collect(Collectors.toList());

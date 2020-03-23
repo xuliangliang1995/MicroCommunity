@@ -1,5 +1,6 @@
 package com.java110.dto.owner.converter;
 
+import com.java110.dto.owner.DeliveryAddressDto;
 import com.java110.dto.owner.OwnerDeliveryAddressDto;
 import com.java110.dto.owner.OwnerDto;
 import com.java110.dto.owner.OwnerDtoWithDeliveryAddress;
@@ -27,6 +28,13 @@ public interface IOwnerConverter {
             @Mapping(source = "addressDto.companyName", target = "companyName"),
             @Mapping(source = "addressDto.companyFloor", target = "companyFloor")
     })
-    OwnerDtoWithDeliveryAddress ownerDtoAttachDeliveryAddress(OwnerDto ownerDto, OwnerDeliveryAddressDto addressDto);
+    OwnerDtoWithDeliveryAddress ownerDtoAttachDeliveryAddress(OwnerDto ownerDto, DeliveryAddressDto addressDto);
+
+    /**
+     * ownerDeliveryAdress 2 deliveryAddressDto
+     * @param address
+     * @return
+     */
+    DeliveryAddressDto ownerDeliveryAddress2DeliveryAddress(OwnerDeliveryAddressDto address);
 
 }
