@@ -21,6 +21,8 @@
                             <th data-hide="phone">联系方式</th>
                             <th data-hide="phone">创建员工</th>
                             <th data-hide="phone">备注</th>
+                            <th data-hide="phone">公司楼层</th>
+                            <th data-hide="phone">公司名称</th>
                             <th class="text-right">操作</th>
 
                         </tr>
@@ -55,6 +57,12 @@
                             <td>
                                 {{owner.remark}}
                             </td>
+                            <td>
+                                {{owner.companyFloor}}
+                            </td>
+                            <td>
+                                {{owner.companyName}}
+                            </td>
                             <td class="text-right">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerModel(owner)">修改</button>
@@ -67,7 +75,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="12">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
