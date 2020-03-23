@@ -15,7 +15,7 @@ import org.mapstruct.Mappings;
  * @Date 2020/3/23 14:06
  * @blame Java Team
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface IOwnerConverter {
 
     /**
