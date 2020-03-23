@@ -81,7 +81,8 @@ operate,company_floor,company_name,owner_id,b_id,user_id,address_id,member_id
     </insert>
 
     <select id="getOwnerDeliveryAddress" parameterType="string" resultType="Map">
-        select t.* from building_owner_delivery_address t where t.member_id = #{memberId}
+        select t.company_floor,t.company_floor companyFloor,t.company_name,t.company_name companyName,t.owner_id,t.owner_id ownerId,t.b_id,t.b_id bId,t.user_id,t.user_id userId,t.address_id,t.address_id addressId,t.member_id,t.member_id memberId
+        from building_owner_delivery_address t where t.member_id = #{memberId}
     </select>
 
 
