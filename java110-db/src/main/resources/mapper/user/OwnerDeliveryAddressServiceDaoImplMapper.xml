@@ -17,32 +17,32 @@ operate,company_floor,company_name,owner_id,b_id,user_id,address_id,member_id
        <!-- 查询业主收货地址信息（Business） add by wuxw 2018-07-03 -->
        <select id="getBusinessOwnerDeliveryAddressInfo" parameterType="Map" resultType="Map">
            select  t.operate,t.company_floor,t.company_floor companyFloor,t.company_name,t.company_name companyName,t.owner_id,t.owner_id ownerId,t.b_id,t.b_id bId,t.user_id,t.user_id userId,t.address_id,t.address_id addressId,t.member_id,t.member_id memberId 
-from business_building_owner_delivery_address t 
-where 1 =1 
-<if test="operate !=null and operate != ''">
-   and t.operate= #{operate}
-</if> 
-<if test="companyFloor !=null and companyFloor != ''">
-   and t.company_floor= #{companyFloor}
-</if> 
-<if test="companyName !=null and companyName != ''">
-   and t.company_name= #{companyName}
-</if> 
-<if test="ownerId !=null and ownerId != ''">
-   and t.owner_id= #{ownerId}
-</if> 
-<if test="bId !=null and bId != ''">
-   and t.b_id= #{bId}
-</if> 
-<if test="userId !=null and userId != ''">
-   and t.user_id= #{userId}
-</if> 
-<if test="addressId !=null and addressId != ''">
-   and t.address_id= #{addressId}
-</if> 
-<if test="memberId !=null and memberId != ''">
-   and t.member_id= #{memberId}
-</if> 
+            from business_building_owner_delivery_address t
+            where 1 =1
+            <if test="operate !=null and operate != ''">
+               and t.operate= #{operate}
+            </if>
+            <if test="companyFloor !=null and companyFloor != ''">
+               and t.company_floor= #{companyFloor}
+            </if>
+            <if test="companyName !=null and companyName != ''">
+               and t.company_name= #{companyName}
+            </if>
+            <if test="ownerId !=null and ownerId != ''">
+               and t.owner_id= #{ownerId}
+            </if>
+            <if test="bId !=null and bId != ''">
+               and t.b_id= #{bId}
+            </if>
+            <if test="userId !=null and userId != ''">
+               and t.user_id= #{userId}
+            </if>
+            <if test="addressId !=null and addressId != ''">
+               and t.address_id= #{addressId}
+            </if>
+            <if test="memberId !=null and memberId != ''">
+               and t.member_id= #{memberId}
+            </if>
 
        </select>
 
@@ -53,30 +53,30 @@ where 1 =1
     <!-- 保存业主收货地址信息至 instance表中 add by wuxw 2018-07-03 -->
     <insert id="saveOwnerDeliveryAddressInfoInstance" parameterType="Map">
         insert into building_owner_delivery_address(
-company_floor,company_name,owner_id,b_id,user_id,address_id,member_id
-) select t.company_floor,t.company_name,t.owner_id,t.b_id,t.user_id,t.address_id,t.member_id from business_building_owner_delivery_address t where 1=1
-   and t.operate= 'ADD'
-<if test="companyFloor !=null and companyFloor != ''">
-   and t.company_floor= #{companyFloor}
-</if> 
-<if test="companyName !=null and companyName != ''">
-   and t.company_name= #{companyName}
-</if> 
-<if test="ownerId !=null and ownerId != ''">
-   and t.owner_id= #{ownerId}
-</if> 
-<if test="bId !=null and bId != ''">
-   and t.b_id= #{bId}
-</if> 
-<if test="userId !=null and userId != ''">
-   and t.user_id= #{userId}
-</if> 
-<if test="addressId !=null and addressId != ''">
-   and t.address_id= #{addressId}
-</if> 
-<if test="memberId !=null and memberId != ''">
-   and t.member_id= #{memberId}
-</if> 
+        company_floor,company_name,owner_id,b_id,user_id,address_id,member_id
+        ) select t.company_floor,t.company_name,t.owner_id,t.b_id,t.user_id,t.address_id,t.member_id from business_building_owner_delivery_address t where 1=1
+           and t.operate= 'ADD'
+        <if test="companyFloor !=null and companyFloor != ''">
+           and t.company_floor= #{companyFloor}
+        </if>
+        <if test="companyName !=null and companyName != ''">
+           and t.company_name= #{companyName}
+        </if>
+        <if test="ownerId !=null and ownerId != ''">
+           and t.owner_id= #{ownerId}
+        </if>
+        <if test="bId !=null and bId != ''">
+           and t.b_id= #{bId}
+        </if>
+        <if test="userId !=null and userId != ''">
+           and t.user_id= #{userId}
+        </if>
+        <if test="addressId !=null and addressId != ''">
+           and t.address_id= #{addressId}
+        </if>
+        <if test="memberId !=null and memberId != ''">
+           and t.member_id= #{memberId}
+        </if>
 
     </insert>
 
@@ -85,33 +85,33 @@ company_floor,company_name,owner_id,b_id,user_id,address_id,member_id
     <!-- 查询业主收货地址信息 add by wuxw 2018-07-03 -->
     <select id="getOwnerDeliveryAddressInfo" parameterType="Map" resultType="Map">
         select  t.company_floor,t.company_floor companyFloor,t.company_name,t.company_name companyName,t.owner_id,t.owner_id ownerId,t.b_id,t.b_id bId,t.user_id,t.user_id userId,t.address_id,t.address_id addressId,t.member_id,t.member_id memberId 
-from building_owner_delivery_address t 
-where 1 =1 
-<if test="companyFloor !=null and companyFloor != ''">
-   and t.company_floor= #{companyFloor}
-</if> 
-<if test="companyName !=null and companyName != ''">
-   and t.company_name= #{companyName}
-</if> 
-<if test="ownerId !=null and ownerId != ''">
-   and t.owner_id= #{ownerId}
-</if> 
-<if test="bId !=null and bId != ''">
-   and t.b_id= #{bId}
-</if> 
-<if test="userId !=null and userId != ''">
-   and t.user_id= #{userId}
-</if> 
-<if test="addressId !=null and addressId != ''">
-   and t.address_id= #{addressId}
-</if> 
-<if test="memberId !=null and memberId != ''">
-   and t.member_id= #{memberId}
-</if> 
-order by t.create_time desc
-<if test="page != -1 and page != null ">
-   limit #{page}, #{row}
-</if> 
+        from building_owner_delivery_address t
+        where 1 =1
+        <if test="companyFloor !=null and companyFloor != ''">
+           and t.company_floor= #{companyFloor}
+        </if>
+        <if test="companyName !=null and companyName != ''">
+           and t.company_name= #{companyName}
+        </if>
+        <if test="ownerId !=null and ownerId != ''">
+           and t.owner_id= #{ownerId}
+        </if>
+        <if test="bId !=null and bId != ''">
+           and t.b_id= #{bId}
+        </if>
+        <if test="userId !=null and userId != ''">
+           and t.user_id= #{userId}
+        </if>
+        <if test="addressId !=null and addressId != ''">
+           and t.address_id= #{addressId}
+        </if>
+        <if test="memberId !=null and memberId != ''">
+           and t.member_id= #{memberId}
+        </if>
+        order by t.create_time desc
+        <if test="page != -1 and page != null ">
+           limit #{page}, #{row}
+        </if>
 
     </select>
 
@@ -121,59 +121,59 @@ order by t.create_time desc
     <!-- 修改业主收货地址信息 add by wuxw 2018-07-03 -->
     <update id="updateOwnerDeliveryAddressInfoInstance" parameterType="Map">
         update  building_owner_delivery_address t set t.status_cd = #{statusCd}
-<if test="newBId != null and newBId != ''">
-,t.b_id = #{newBId}
-</if> 
-<if test="companyFloor !=null and companyFloor != ''">
-, t.company_floor= #{companyFloor}
-</if> 
-<if test="companyName !=null and companyName != ''">
-, t.company_name= #{companyName}
-</if> 
-<if test="ownerId !=null and ownerId != ''">
-, t.owner_id= #{ownerId}
-</if> 
-<if test="userId !=null and userId != ''">
-, t.user_id= #{userId}
-</if> 
-<if test="memberId !=null and memberId != ''">
-, t.member_id= #{memberId}
-</if> 
- where 1=1 <if test="bId !=null and bId != ''">
-and t.b_id= #{bId}
-</if> 
-<if test="addressId !=null and addressId != ''">
-and t.address_id= #{addressId}
-</if> 
+        <if test="newBId != null and newBId != ''">
+        ,t.b_id = #{newBId}
+        </if>
+        <if test="companyFloor !=null and companyFloor != ''">
+        , t.company_floor= #{companyFloor}
+        </if>
+        <if test="companyName !=null and companyName != ''">
+        , t.company_name= #{companyName}
+        </if>
+        <if test="ownerId !=null and ownerId != ''">
+        , t.owner_id= #{ownerId}
+        </if>
+        <if test="userId !=null and userId != ''">
+        , t.user_id= #{userId}
+        </if>
+        <if test="memberId !=null and memberId != ''">
+        , t.member_id= #{memberId}
+        </if>
+         where 1=1 <if test="bId !=null and bId != ''">
+        and t.b_id= #{bId}
+        </if>
+        <if test="addressId !=null and addressId != ''">
+        and t.address_id= #{addressId}
+        </if>
 
     </update>
 
     <!-- 查询业主收货地址数量 add by wuxw 2018-07-03 -->
      <select id="queryOwnerDeliveryAddresssCount" parameterType="Map" resultType="Map">
         select  count(1) count 
-from building_owner_delivery_address t 
-where 1 =1 
-<if test="companyFloor !=null and companyFloor != ''">
-   and t.company_floor= #{companyFloor}
-</if> 
-<if test="companyName !=null and companyName != ''">
-   and t.company_name= #{companyName}
-</if> 
-<if test="ownerId !=null and ownerId != ''">
-   and t.owner_id= #{ownerId}
-</if> 
-<if test="bId !=null and bId != ''">
-   and t.b_id= #{bId}
-</if> 
-<if test="userId !=null and userId != ''">
-   and t.user_id= #{userId}
-</if> 
-<if test="addressId !=null and addressId != ''">
-   and t.address_id= #{addressId}
-</if> 
-<if test="memberId !=null and memberId != ''">
-   and t.member_id= #{memberId}
-</if> 
+        from building_owner_delivery_address t
+        where 1 =1
+        <if test="companyFloor !=null and companyFloor != ''">
+           and t.company_floor= #{companyFloor}
+        </if>
+        <if test="companyName !=null and companyName != ''">
+           and t.company_name= #{companyName}
+        </if>
+        <if test="ownerId !=null and ownerId != ''">
+           and t.owner_id= #{ownerId}
+        </if>
+        <if test="bId !=null and bId != ''">
+           and t.b_id= #{bId}
+        </if>
+        <if test="userId !=null and userId != ''">
+           and t.user_id= #{userId}
+        </if>
+        <if test="addressId !=null and addressId != ''">
+           and t.address_id= #{addressId}
+        </if>
+        <if test="memberId !=null and memberId != ''">
+           and t.member_id= #{memberId}
+        </if>
 
 
      </select>

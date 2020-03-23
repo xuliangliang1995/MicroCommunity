@@ -5,20 +5,27 @@ import com.alibaba.fastjson.JSONObject;
 import com.java110.api.listener.AbstractServiceApiDataFlowListener;
 import com.java110.core.annotation.Java110Listener;
 import com.java110.core.context.DataFlowContext;
+import com.java110.core.smo.owner.IOwnerDeliveryAddressInnerServiceSMO;
 import com.java110.core.smo.owner.IOwnerInnerServiceSMO;
+import com.java110.dto.owner.DeliveryAddressDto;
+import com.java110.dto.owner.OwnerDeliveryAddressDto;
 import com.java110.dto.owner.OwnerDto;
+import com.java110.dto.owner.OwnerDtoWithDeliveryAddress;
+import com.java110.dto.owner.converter.IOwnerConverter;
 import com.java110.event.service.api.ServiceDataFlowEvent;
 import com.java110.utils.constant.ServiceCodeConstant;
 import com.java110.utils.util.Assert;
 import com.java110.utils.util.BeanConvertUtil;
 import com.java110.vo.api.ApiOwnerDataVo;
 import com.java110.vo.api.ApiOwnerVo;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName OwnerDto
@@ -33,6 +40,12 @@ public class QueryOwnerMembersListener extends AbstractServiceApiDataFlowListene
 
     @Autowired
     private IOwnerInnerServiceSMO ownerInnerServiceSMOImpl;
+
+    @Autowired
+    private IOwnerDeliveryAddressInnerServiceSMO ownerDeliveryAddressInnerServiceSMOImpl;
+
+    @Autowired
+    private IOwnerConverter ownerConverter;
 
     @Override
     public String getServiceCode() {
@@ -59,8 +72,25 @@ public class QueryOwnerMembersListener extends AbstractServiceApiDataFlowListene
         OwnerDto ownerDto = BeanConvertUtil.covertBean(reqJson, OwnerDto.class);
         ownerDto.setOwnerTypeCds(new String[]{"1002", "1003", "1004", "1005"});
         List<OwnerDto> ownerDtoList = ownerInnerServiceSMOImpl.queryOwnerMembers(ownerDto);
+
+        // 再依次查出各个业主/家庭成员的收货地址
+        List<OwnerDtoWithDeliveryAddress> ownerDtoWithDeliveryAddressList = ownerDtoList.parallelStream()
+                .map(owner -> {
+                    OwnerDeliveryAddressDto example = new OwnerDeliveryAddressDto();
+                    example.setMemberId(owner.getMemberId());
+                    List<OwnerDeliveryAddressDto> addressList = ownerDeliveryAddressInnerServiceSMOImpl.queryOwnerDeliveryAddresss(example);
+
+                    DeliveryAddressDto addressDto = DeliveryAddressDto.EMPTY_ADDRESS;
+                    if (CollectionUtils.isNotEmpty(addressList)) {
+                        addressDto = ownerConverter.ownerDeliveryAddress2DeliveryAddress(addressList.get(0));
+                    }
+
+                    return ownerConverter.ownerDtoAttachDeliveryAddress(owner, addressDto);
+                }).collect(Collectors.toList());
+
+
         ApiOwnerVo apiOwnerVo = new ApiOwnerVo();
-        apiOwnerVo.setOwners(BeanConvertUtil.covertBeanList(ownerDtoList, ApiOwnerDataVo.class));
+        apiOwnerVo.setOwners(BeanConvertUtil.covertBeanList(ownerDtoWithDeliveryAddressList, ApiOwnerDataVo.class));
         apiOwnerVo.setTotal(ownerDtoList.size());
         apiOwnerVo.setRecords(1);
 
@@ -95,4 +125,5 @@ public class QueryOwnerMembersListener extends AbstractServiceApiDataFlowListene
     public void setOwnerInnerServiceSMOImpl(IOwnerInnerServiceSMO ownerInnerServiceSMOImpl) {
         this.ownerInnerServiceSMOImpl = ownerInnerServiceSMOImpl;
     }
+
 }
