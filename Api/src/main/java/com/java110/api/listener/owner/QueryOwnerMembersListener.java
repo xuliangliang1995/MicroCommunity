@@ -10,6 +10,7 @@ import com.java110.core.smo.owner.IOwnerInnerServiceSMO;
 import com.java110.dto.owner.DeliveryAddressDto;
 import com.java110.dto.owner.OwnerDeliveryAddressDto;
 import com.java110.dto.owner.OwnerDto;
+import com.java110.dto.owner.OwnerDtoWithDeliveryAddress;
 import com.java110.dto.owner.converter.IOwnerConverter;
 import com.java110.event.service.api.ServiceDataFlowEvent;
 import com.java110.utils.constant.ServiceCodeConstant;
@@ -73,19 +74,18 @@ public class QueryOwnerMembersListener extends AbstractServiceApiDataFlowListene
         List<OwnerDto> ownerDtoList = ownerInnerServiceSMOImpl.queryOwnerMembers(ownerDto);
 
         // 再依次查出各个业主/家庭成员的收货地址
-        List<OwnerDto> ownerDtoWithDeliveryAddressList = ownerDtoList.parallelStream()
+        List<OwnerDtoWithDeliveryAddress> ownerDtoWithDeliveryAddressList = ownerDtoList.parallelStream()
                 .map(owner -> {
                     OwnerDeliveryAddressDto example = new OwnerDeliveryAddressDto();
                     example.setMemberId(owner.getMemberId());
-                    example.setPage(0);
-                    example.setRow(1);
                     List<OwnerDeliveryAddressDto> addressList = ownerDeliveryAddressInnerServiceSMOImpl.queryOwnerDeliveryAddresss(example);
 
+                    DeliveryAddressDto addressDto = DeliveryAddressDto.EMPTY_ADDRESS;
                     if (CollectionUtils.isNotEmpty(addressList)) {
-                        DeliveryAddressDto addressDto = ownerConverter.ownerDeliveryAddress2DeliveryAddress(addressList.get(0));
-                        return ownerConverter.ownerDtoAttachDeliveryAddress(owner, addressDto);
+                        addressDto = ownerConverter.ownerDeliveryAddress2DeliveryAddress(addressList.get(0));
                     }
-                    return owner;
+
+                    return ownerConverter.ownerDtoAttachDeliveryAddress(owner, addressDto);
                 }).collect(Collectors.toList());
 
 
