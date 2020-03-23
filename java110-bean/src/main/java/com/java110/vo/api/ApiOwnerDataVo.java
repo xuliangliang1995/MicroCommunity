@@ -152,4 +152,6 @@ public class ApiOwnerDataVo extends Vo {
     public void setCompanyFloor(String companyFloor) {
         this.companyFloor = companyFloor;
     }
+
+
 }
