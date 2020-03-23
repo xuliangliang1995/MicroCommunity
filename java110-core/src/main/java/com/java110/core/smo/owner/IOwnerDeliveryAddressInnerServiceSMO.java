@@ -3,6 +3,7 @@ package com.java110.core.smo.owner;
 import com.java110.core.feign.FeignConfiguration;
 import com.java110.dto.owner.OwnerDeliveryAddressDto;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,4 +40,12 @@ public interface IOwnerDeliveryAddressInnerServiceSMO {
      */
     @RequestMapping(value = "/queryOwnerDeliveryAddresssCount", method = RequestMethod.POST)
     int queryOwnerDeliveryAddresssCount(@RequestBody OwnerDeliveryAddressDto ownerDeliveryAddressDto);
+
+    /**
+     * 获取业主/家庭成员收货地址
+     * @param memberId
+     * @return
+     */
+    @RequestMapping(value = "/{memberId}/ownerDeliveryAddress")
+    OwnerDeliveryAddressDto getOwnerDeliveryAddress(@PathVariable("memberId") String memberId);
 }

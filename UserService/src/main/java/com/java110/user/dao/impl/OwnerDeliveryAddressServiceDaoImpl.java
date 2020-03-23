@@ -1,6 +1,7 @@
 package com.java110.user.dao.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.java110.dto.owner.OwnerDeliveryAddressDto;
 import com.java110.user.dao.IOwnerDeliveryAddressServiceDao;
 import com.java110.utils.constant.ResponseConstant;
 import com.java110.utils.exception.DAOException;
@@ -124,6 +125,18 @@ public class OwnerDeliveryAddressServiceDaoImpl extends BaseServiceDao implement
         }
 
         return Integer.parseInt(businessOwnerDeliveryAddressInfos.get(0).get("count").toString());
+    }
+
+    /**
+     * 根据 memberId 获取地址
+     *
+     * @param memberId
+     * @return
+     */
+    @Override
+    public Map getOwnerDeliveryAddress(String memberId) {
+        logger.debug("查询业主收货地址数据 入参 info : {}",memberId);
+        return sqlSessionTemplate.selectOne("ownerDeliveryAddressServiceDaoImpl.getOwnerDeliveryAddress");
     }
 
 

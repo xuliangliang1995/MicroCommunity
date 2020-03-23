@@ -17,6 +17,8 @@
                 ownerId: '',
                 ownerPhoto: '',
                 idCard: '',
+                companyName: '',
+                companyFloor: '',
                 videoPlaying: false
             }
         },
@@ -79,6 +81,20 @@
                             param: "",
                             errInfo: "不是有效的手机号"
                         }
+                    ],
+                    'addOwnerInfo.companyName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "公司名称不能为空"
+                        },
+                    ],
+                    'addOwnerInfo.companyFloor': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "公司楼层不能为空"
+                        },
                     ],
                     'addOwnerInfo.idCard': [
                         {

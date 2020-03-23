@@ -80,6 +80,9 @@ operate,company_floor,company_name,owner_id,b_id,user_id,address_id,member_id
 
     </insert>
 
+    <select id="getOwnerDeliveryAddress" parameterType="string" resultType="Map">
+        select t.* from building_owner_delivery_address t where t.member_id = #{memberId}
+    </select>
 
 
     <!-- 查询业主收货地址信息 add by wuxw 2018-07-03 -->

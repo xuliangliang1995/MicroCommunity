@@ -78,12 +78,13 @@ public class QueryOwnerMembersListener extends AbstractServiceApiDataFlowListene
                 .map(owner -> {
                     OwnerDeliveryAddressDto example = new OwnerDeliveryAddressDto();
                     example.setMemberId(owner.getMemberId());
-                    List<OwnerDeliveryAddressDto> addressList = ownerDeliveryAddressInnerServiceSMOImpl.queryOwnerDeliveryAddresss(example);
+                    //List<OwnerDeliveryAddressDto> addressList = ownerDeliveryAddressInnerServiceSMOImpl.queryOwnerDeliveryAddresss(example);
 
-                    DeliveryAddressDto addressDto = DeliveryAddressDto.EMPTY_ADDRESS;
-                    if (CollectionUtils.isNotEmpty(addressList)) {
-                        addressDto = ownerConverter.ownerDeliveryAddress2DeliveryAddress(addressList.get(0));
-                    }
+                    OwnerDeliveryAddressDto address = ownerDeliveryAddressInnerServiceSMOImpl.getOwnerDeliveryAddress(owner.getMemberId());
+
+                    DeliveryAddressDto addressDto = null != address
+                            ? ownerConverter.ownerDeliveryAddress2DeliveryAddress(address)
+                            : DeliveryAddressDto.EMPTY_ADDRESS;
 
                     return ownerConverter.ownerDtoAttachDeliveryAddress(owner, addressDto);
                 }).collect(Collectors.toList());
