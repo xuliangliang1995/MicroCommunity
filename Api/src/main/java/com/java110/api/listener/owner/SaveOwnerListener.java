@@ -119,6 +119,7 @@ public class SaveOwnerListener extends AbstractServiceApiDataFlowListener {
 
         }
 
+        // 新增业主、业主成员（员工）公司地址
         final String PARAM_COMPANY_NAME = "companyName";
         if (paramObj.containsKey(PARAM_COMPANY_NAME) && !StringUtils.isEmpty(paramObj.getString(PARAM_COMPANY_NAME))) {
             businesses.add(addOwnerDeliveryAddress(paramObj, dataFlowContext));
