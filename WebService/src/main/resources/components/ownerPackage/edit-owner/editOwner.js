@@ -162,6 +162,8 @@
                     ownerId: '',
                     memberId: '',
                     name: '',
+                    companyFloor: '',
+                    companyName: '',
                     age: '',
                     link: '',
                     sex: '',
