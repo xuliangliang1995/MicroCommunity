@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git pull origin locale
+git pull origin test
 
 mvn clean install -Dmaven.test.skip=true
 mvn package -Dmaven.test.skip=true
