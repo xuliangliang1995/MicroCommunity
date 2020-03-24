@@ -152,6 +152,10 @@ operate,company_floor,company_name,owner_id,b_id,user_id,address_id,member_id
 
     </update>
 
+    <delete id="deleteOwnerDeliveryAddressInfoInstance" parameterType="string">
+        delete from building_owner_delivery_address where  address_id = #{addressId}
+    </delete>
+
     <!-- 查询业主收货地址数量 add by wuxw 2018-07-03 -->
      <select id="queryOwnerDeliveryAddresssCount" parameterType="Map" resultType="Map">
         select  count(1) count 

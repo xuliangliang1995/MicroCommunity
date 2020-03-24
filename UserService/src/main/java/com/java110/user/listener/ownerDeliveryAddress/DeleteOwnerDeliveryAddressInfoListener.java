@@ -165,6 +165,8 @@ public class DeleteOwnerDeliveryAddressInfoListener extends AbstractOwnerDeliver
         }
         //自动插入DEL
         autoSaveDelBusinessOwnerDeliveryAddress(business,businessOwnerDeliveryAddress);
+        //删除业主收货地址信息
+        //ownerDeliveryAddressServiceDaoImpl.deleteBusinessOwnerDeliveryAddressInfo(businessOwnerDeliveryAddress);
     }
 
     @Override
