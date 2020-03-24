@@ -941,7 +941,29 @@ public class BusinessTypeConstant {
      * 删除商品配图
      */
     public static final String BUSINESS_TYPE_DELETE_COMMODITY_PHOTO = "600100050001";
-
-
+    /**
+     * 保存商品简介
+     */
+    public static final String BUSINESS_TYPE_SAVE_COMMODITY_INTRO = "600200010001";
+    /**
+     * 更新商品简介
+     */
+    public static final String BUSINESS_TYPE_UPDATE_COMMODITY_INTRO = "600200040001";
+    /**
+     * 删除商品简介
+     */
+    public static final String BUSINESS_TYPE_DELETE_COMMODITY_INTRO = "600200050001";
+    /**
+     * 添加商品库存
+     */
+    public static final String BUSINESS_TYPE_SAVE_COMMODITY_STOCKPILE = "600300030001";
+    /**
+     * 更新商品库存
+     */
+    public static final String BUSINESS_TYPE_UPDATE_COMMODITY_STOCKPILE = "600300040001";
+    /**
+     * 删除商品库存
+     */
+    public static final String BUSINESS_TYPE_DELETE_COMMODITY_STOCKPILE = "600300050001";
 
 }

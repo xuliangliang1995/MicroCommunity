@@ -1,7 +1,7 @@
 package com.java110.core.smo.commodity;
 
 import com.java110.core.feign.FeignConfiguration;
-import com.java110.dto.community.CommodityPhotoDto;
+import com.java110.dto.commodity.CommodityPhotoDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

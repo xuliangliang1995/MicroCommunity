@@ -1,4 +1,4 @@
-package com.java110.dto.community;
+package com.java110.dto.commodity;
 
 import com.java110.dto.PageDto;
 
@@ -7,18 +7,19 @@ import java.util.Date;
 
 /**
  * @ClassName FloorDto
- * @Description 商品配图数据层封装
+ * @Description 商品库存数据层封装
  * @Author wuxw
  * @Date 2019/4/24 8:52
  * @Version 1.0
  * add by wuxw 2019/4/24
  **/
-public class CommodityPhotoDto extends PageDto implements Serializable {
+public class CommodityStockpileDto extends PageDto implements Serializable {
 
-    private String photoId;
-private String photo;
+    private String amount;
+private String stockpileId;
 private String remark;
 private String commodityId;
+private String version;
 private String userId;
 
 
@@ -27,17 +28,17 @@ private String userId;
     private String statusCd = "0";
 
 
-    public String getPhotoId() {
-        return photoId;
+    public String getAmount() {
+        return amount;
     }
-public void setPhotoId(String photoId) {
-        this.photoId = photoId;
+public void setAmount(String amount) {
+        this.amount = amount;
     }
-public String getPhoto() {
-        return photo;
+public String getStockpileId() {
+        return stockpileId;
     }
-public void setPhoto(String photo) {
-        this.photo = photo;
+public void setStockpileId(String stockpileId) {
+        this.stockpileId = stockpileId;
     }
 public String getRemark() {
         return remark;
@@ -50,6 +51,12 @@ public String getCommodityId() {
     }
 public void setCommodityId(String commodityId) {
         this.commodityId = commodityId;
+    }
+public String getVersion() {
+        return version;
+    }
+public void setVersion(String version) {
+        this.version = version;
     }
 public String getUserId() {
         return userId;

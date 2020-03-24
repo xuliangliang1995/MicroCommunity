@@ -6,18 +6,14 @@ import com.java110.api.listener.AbstractServiceApiDataFlowListener;
 import com.java110.core.annotation.Java110Listener;
 import com.java110.core.context.DataFlowContext;
 import com.java110.core.factory.GenerateCodeFactory;
-import com.java110.core.smo.file.IFileInnerServiceSMO;
-import com.java110.dto.file.FileDto;
 import com.java110.entity.center.AppService;
 import com.java110.event.service.api.ServiceDataFlowEvent;
 import com.java110.utils.constant.BusinessTypeConstant;
 import com.java110.utils.constant.CommonConstant;
 import com.java110.utils.constant.ServiceCodeConstant;
-import com.netflix.discovery.converters.Auto;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +29,6 @@ import org.springframework.http.ResponseEntity;
 public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
 
     private static Logger logger = LoggerFactory.getLogger(SaveCommodityListener.class);
-
-    @Autowired
-    private IFileInnerServiceSMO fileInnerServiceSMOImpl;
 
     /**
      * 业务 编码
@@ -85,8 +78,16 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
 
         // 库存
         final String PARAM_STOCK = "stock";
+        if (paramObj.containsKey(PARAM_STOCK)) {
+            businesses.add(addCommodityStockpile(paramObj, dataFlowContext));
+        }
+
         // 介绍
         final String PARAM_INTRO = "intro";
+        if (paramObj.containsKey(PARAM_INTRO)) {
+            businesses.add(addCommodityIntro(paramObj, dataFlowContext));
+        }
+
         // 配图
         final String PARAM_COMMODITY_PHOTOS = "commodityPhotos";
         if (paramObj.containsKey(PARAM_COMMODITY_PHOTOS) && !StringUtils.isEmpty(paramObj.getString(PARAM_COMMODITY_PHOTOS))) {
@@ -106,6 +107,46 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
         ResponseEntity<String> responseEntity = this.callService(dataFlowContext, service.getServiceCode(), paramInObj);
 
         dataFlowContext.setResponseEntity(responseEntity);
+    }
+
+    /**
+     * 添加商品库存
+     * @param paramObj
+     * @param dataFlowContext
+     * @return
+     */
+    private JSONObject addCommodityStockpile(JSONObject paramObj, DataFlowContext dataFlowContext) {
+        JSONObject business = JSONObject.parseObject("{\"datas\":{}}");
+        business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_SAVE_COMMODITY_STOCKPILE);
+        business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
+        business.put(CommonConstant.HTTP_INVOKE_MODEL, CommonConstant.HTTP_INVOKE_MODEL_S);
+        JSONObject businessCommodity = new JSONObject();
+        businessCommodity.put("stockpileId", "-1");
+        businessCommodity.put("amount", paramObj.getIntValue("amount"));
+        businessCommodity.put("remark", "");
+        businessCommodity.put("commodityId", paramObj.getString("commodityId"));
+        businessCommodity.put("version", 1);
+        businessCommodity.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
+        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityStockpileInfo", businessCommodity);
+        return business;
+    }
+
+
+    /**
+     * 添加商品
+     * @param paramInJson
+     * @return
+     */
+    private JSONObject addCommodity(JSONObject paramInJson, DataFlowContext dataFlowContext) {
+        JSONObject business = JSONObject.parseObject("{\"datas\":{}}");
+        business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_SAVE_COMMODITY);
+        business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
+        business.put(CommonConstant.HTTP_INVOKE_MODEL, CommonConstant.HTTP_INVOKE_MODEL_S);
+        JSONObject businessCommodity = new JSONObject();
+        businessCommodity.putAll(paramInJson);
+        businessCommodity.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
+        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityInfo", businessCommodity);
+        return business;
     }
 
     /**
@@ -137,22 +178,24 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
     }
 
     /**
-     * 添加商品
-     * @param paramInJson
+     * 添加商品接收
+     * @param paramObj
+     * @param dataFlowContext
      * @return
      */
-    private JSONObject addCommodity(JSONObject paramInJson, DataFlowContext dataFlowContext) {
+    private JSONObject addCommodityIntro(JSONObject paramObj, DataFlowContext dataFlowContext) {
         JSONObject business = JSONObject.parseObject("{\"datas\":{}}");
-        business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_SAVE_COMMODITY);
+        business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_SAVE_COMMODITY_INTRO);
         business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
         business.put(CommonConstant.HTTP_INVOKE_MODEL, CommonConstant.HTTP_INVOKE_MODEL_S);
         JSONObject businessCommodity = new JSONObject();
-        businessCommodity.putAll(paramInJson);
+        businessCommodity.put("commodityId", paramObj.getString("commodityId"));
+        businessCommodity.put("intro", paramObj.getString("intro"));
+        businessCommodity.put("remark", "");
         businessCommodity.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
-        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityInfo", businessCommodity);
+        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityIntroInfo", businessCommodity);
         return business;
     }
-
     /**
      * 参数校验
      * @param paramIn

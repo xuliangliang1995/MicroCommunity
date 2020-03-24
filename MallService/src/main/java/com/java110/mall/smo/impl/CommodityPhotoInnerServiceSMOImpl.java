@@ -2,7 +2,7 @@ package com.java110.mall.smo.impl;
 
 
 import com.java110.core.smo.commodity.ICommodityPhotoInnerServiceSMO;
-import com.java110.dto.community.CommodityPhotoDto;
+import com.java110.dto.commodity.CommodityPhotoDto;
 import com.java110.mall.dao.ICommodityPhotoServiceDao;
 import com.java110.utils.util.BeanConvertUtil;
 import com.java110.core.base.smo.BaseServiceSMO;
