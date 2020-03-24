@@ -650,5 +650,8 @@ public class ServiceCodeConstant {
     //查询停车位
     public static final String SERVICE_CODE_QUERY_PARKING_SPACE_CAR = "parkingSpace.queryParkingSpaceCars";
 
+    // 添加商品
+    public static final String SERVICE_CODE_SAVE_COMMODITY = "commodity.saveCommodity";
+
 
 }

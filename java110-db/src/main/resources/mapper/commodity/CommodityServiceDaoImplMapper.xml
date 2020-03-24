@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commodityServiceDaoImpl">
+
+    <!-- 保存商品信息 add by wuxw 2018-07-03 -->
+       <insert id="saveBusinessCommodityInfo" parameterType="Map">
+           insert into business_commodity(
+operate,original_price,show,current_price,remark,commodity_id,community_id,b_id,title,user_id
+) values (
+#{operate},#{originalPrice},#{show},#{currentPrice},#{remark},#{commodityId},#{communityId},#{bId},#{title},#{userId}
+)
+       </insert>
+
+
+       <!-- 查询商品信息（Business） add by wuxw 2018-07-03 -->
+       <select id="getBusinessCommodityInfo" parameterType="Map" resultType="Map">
+           select  t.operate,t.original_price,t.original_price originalPrice,t.show,t.current_price,t.current_price currentPrice,t.remark,t.commodity_id,t.commodity_id commodityId,t.community_id,t.community_id communityId,t.b_id,t.b_id bId,t.title,t.user_id,t.user_id userId 
+from business_commodity t 
+where 1 =1 
+<if test="operate !=null and operate != ''">
+   and t.operate= #{operate}
+</if> 
+<if test="originalPrice !=null and originalPrice != ''">
+   and t.original_price= #{originalPrice}
+</if> 
+<if test="show !=null and show != ''">
+   and t.show= #{show}
+</if> 
+<if test="currentPrice !=null and currentPrice != ''">
+   and t.current_price= #{currentPrice}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="communityId !=null and communityId != ''">
+   and t.community_id= #{communityId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="title !=null and title != ''">
+   and t.title= #{title}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+       </select>
+
+
+
+
+
+    <!-- 保存商品信息至 instance表中 add by wuxw 2018-07-03 -->
+    <insert id="saveCommodityInfoInstance" parameterType="Map">
+        insert into m_commodity(
+original_price,show,current_price,remark,commodity_id,community_id,b_id,title,user_id
+) select t.original_price,t.show,t.current_price,t.remark,t.commodity_id,t.community_id,t.b_id,t.title,t.user_id from business_commodity t where 1=1
+   and t.operate= 'ADD'
+<if test="originalPrice !=null and originalPrice != ''">
+   and t.original_price= #{originalPrice}
+</if> 
+<if test="show !=null and show != ''">
+   and t.show= #{show}
+</if> 
+<if test="currentPrice !=null and currentPrice != ''">
+   and t.current_price= #{currentPrice}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="communityId !=null and communityId != ''">
+   and t.community_id= #{communityId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="title !=null and title != ''">
+   and t.title= #{title}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+    </insert>
+
+
+
+    <!-- 查询商品信息 add by wuxw 2018-07-03 -->
+    <select id="getCommodityInfo" parameterType="Map" resultType="Map">
+        select  t.original_price,t.original_price originalPrice,t.show,t.current_price,t.current_price currentPrice,t.remark,t.commodity_id,t.commodity_id commodityId,t.community_id,t.community_id communityId,t.b_id,t.b_id bId,t.title,t.user_id,t.user_id userId 
+from m_commodity t 
+where 1 =1 
+<if test="originalPrice !=null and originalPrice != ''">
+   and t.original_price= #{originalPrice}
+</if> 
+<if test="show !=null and show != ''">
+   and t.show= #{show}
+</if> 
+<if test="currentPrice !=null and currentPrice != ''">
+   and t.current_price= #{currentPrice}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="communityId !=null and communityId != ''">
+   and t.community_id= #{communityId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="title !=null and title != ''">
+   and t.title= #{title}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+order by t.create_time desc
+<if test="page != -1 and page != null ">
+   limit #{page}, #{row}
+</if> 
+
+    </select>
+
+
+
+
+    <!-- 修改商品信息 add by wuxw 2018-07-03 -->
+    <update id="updateCommodityInfoInstance" parameterType="Map">
+        update  m_commodity t set t.status_cd = #{statusCd}
+<if test="newBId != null and newBId != ''">
+,t.b_id = #{newBId}
+</if> 
+<if test="originalPrice !=null and originalPrice != ''">
+, t.original_price= #{originalPrice}
+</if> 
+<if test="show !=null and show != ''">
+, t.show= #{show}
+</if> 
+<if test="currentPrice !=null and currentPrice != ''">
+, t.current_price= #{currentPrice}
+</if> 
+<if test="remark !=null and remark != ''">
+, t.remark= #{remark}
+</if> 
+<if test="communityId !=null and communityId != ''">
+, t.community_id= #{communityId}
+</if> 
+<if test="title !=null and title != ''">
+, t.title= #{title}
+</if> 
+<if test="userId !=null and userId != ''">
+, t.user_id= #{userId}
+</if> 
+ where 1=1 <if test="commodityId !=null and commodityId != ''">
+and t.commodity_id= #{commodityId}
+</if> 
+<if test="bId !=null and bId != ''">
+and t.b_id= #{bId}
+</if> 
+
+    </update>
+
+    <!-- 查询商品数量 add by wuxw 2018-07-03 -->
+     <select id="queryCommoditysCount" parameterType="Map" resultType="Map">
+        select  count(1) count 
+from m_commodity t 
+where 1 =1 
+<if test="originalPrice !=null and originalPrice != ''">
+   and t.original_price= #{originalPrice}
+</if> 
+<if test="show !=null and show != ''">
+   and t.show= #{show}
+</if> 
+<if test="currentPrice !=null and currentPrice != ''">
+   and t.current_price= #{currentPrice}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="communityId !=null and communityId != ''">
+   and t.community_id= #{communityId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="title !=null and title != ''">
+   and t.title= #{title}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+
+     </select>
+
+</mapper>

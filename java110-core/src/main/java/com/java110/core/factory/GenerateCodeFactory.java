@@ -122,6 +122,9 @@ public class GenerateCodeFactory {
     public static final String CODE_PREFIX_inspectionPlanId = "14";
     public static final String CODE_PREFIX_applyOrderId = "15";
 
+    public static final String CODE_PREFIX_commodityId = "100";
+    public static final String CODE_PREFIX_photoId = "101";
+
 
 
     /**
