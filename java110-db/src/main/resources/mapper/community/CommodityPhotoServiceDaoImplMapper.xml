@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commodityPhotoServiceDaoImpl">
+
+    <!-- 保存商品配图信息 add by wuxw 2018-07-03 -->
+       <insert id="saveBusinessCommodityPhotoInfo" parameterType="Map">
+           insert into business_commodity_photo(
+operate,photo_id,photo,remark,commodity_id,b_id,user_id
+) values (
+#{operate},#{photoId},#{photo},#{remark},#{commodityId},#{bId},#{userId}
+)
+       </insert>
+
+
+       <!-- 查询商品配图信息（Business） add by wuxw 2018-07-03 -->
+       <select id="getBusinessCommodityPhotoInfo" parameterType="Map" resultType="Map">
+           select  t.operate,t.photo_id,t.photo_id photoId,t.photo,t.remark,t.commodity_id,t.commodity_id commodityId,t.b_id,t.b_id bId,t.user_id,t.user_id userId 
+from business_commodity_photo t 
+where 1 =1 
+<if test="operate !=null and operate != ''">
+   and t.operate= #{operate}
+</if> 
+<if test="photoId !=null and photoId != ''">
+   and t.photo_id= #{photoId}
+</if> 
+<if test="photo !=null and photo != ''">
+   and t.photo= #{photo}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+       </select>
+
+
+
+
+
+    <!-- 保存商品配图信息至 instance表中 add by wuxw 2018-07-03 -->
+    <insert id="saveCommodityPhotoInfoInstance" parameterType="Map">
+        insert into commodity_photo(
+photo_id,photo,remark,commodity_id,b_id,user_id
+) select t.photo_id,t.photo,t.remark,t.commodity_id,t.b_id,t.user_id from business_commodity_photo t where 1=1
+   and t.operate= 'ADD'
+<if test="photoId !=null and photoId != ''">
+   and t.photo_id= #{photoId}
+</if> 
+<if test="photo !=null and photo != ''">
+   and t.photo= #{photo}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+    </insert>
+
+
+
+    <!-- 查询商品配图信息 add by wuxw 2018-07-03 -->
+    <select id="getCommodityPhotoInfo" parameterType="Map" resultType="Map">
+        select  t.photo_id,t.photo_id photoId,t.photo,t.remark,t.commodity_id,t.commodity_id commodityId,t.b_id,t.b_id bId,t.user_id,t.user_id userId 
+from commodity_photo t 
+where 1 =1 
+<if test="photoId !=null and photoId != ''">
+   and t.photo_id= #{photoId}
+</if> 
+<if test="photo !=null and photo != ''">
+   and t.photo= #{photo}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+order by t.create_time desc
+<if test="page != -1 and page != null ">
+   limit #{page}, #{row}
+</if> 
+
+    </select>
+
+
+
+
+    <!-- 修改商品配图信息 add by wuxw 2018-07-03 -->
+    <update id="updateCommodityPhotoInfoInstance" parameterType="Map">
+        update  commodity_photo t set t.status_cd = #{statusCd}
+<if test="newBId != null and newBId != ''">
+,t.b_id = #{newBId}
+</if> 
+<if test="photo !=null and photo != ''">
+, t.photo= #{photo}
+</if> 
+<if test="remark !=null and remark != ''">
+, t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+, t.commodity_id= #{commodityId}
+</if> 
+<if test="userId !=null and userId != ''">
+, t.user_id= #{userId}
+</if> 
+ where 1=1 <if test="photoId !=null and photoId != ''">
+and t.photo_id= #{photoId}
+</if> 
+<if test="bId !=null and bId != ''">
+and t.b_id= #{bId}
+</if> 
+
+    </update>
+
+    <!-- 查询商品配图数量 add by wuxw 2018-07-03 -->
+     <select id="queryCommodityPhotosCount" parameterType="Map" resultType="Map">
+        select  count(1) count 
+from commodity_photo t 
+where 1 =1 
+<if test="photoId !=null and photoId != ''">
+   and t.photo_id= #{photoId}
+</if> 
+<if test="photo !=null and photo != ''">
+   and t.photo= #{photo}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+
+     </select>
+
+</mapper>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commodityIntroServiceDaoImpl">
+
+    <!-- 保存商品简介信息 add by wuxw 2018-07-03 -->
+       <insert id="saveBusinessCommodityIntroInfo" parameterType="Map">
+           insert into business_commodity_intro(
+operate,intro,remark,commodity_id,intro_id,b_id,user_id
+) values (
+#{operate},#{intro},#{remark},#{commodityId},#{introId},#{bId},#{userId}
+)
+       </insert>
+
+
+       <!-- 查询商品简介信息（Business） add by wuxw 2018-07-03 -->
+       <select id="getBusinessCommodityIntroInfo" parameterType="Map" resultType="Map">
+           select  t.operate,t.intro,t.remark,t.commodity_id,t.commodity_id commodityId,t.intro_id,t.intro_id introId,t.b_id,t.b_id bId,t.user_id,t.user_id userId 
+from business_commodity_intro t 
+where 1 =1 
+<if test="operate !=null and operate != ''">
+   and t.operate= #{operate}
+</if> 
+<if test="intro !=null and intro != ''">
+   and t.intro= #{intro}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="introId !=null and introId != ''">
+   and t.intro_id= #{introId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+       </select>
+
+
+
+
+
+    <!-- 保存商品简介信息至 instance表中 add by wuxw 2018-07-03 -->
+    <insert id="saveCommodityIntroInfoInstance" parameterType="Map">
+        insert into commodity_intro(
+intro,remark,commodity_id,intro_id,b_id,user_id
+) select t.intro,t.remark,t.commodity_id,t.intro_id,t.b_id,t.user_id from business_commodity_intro t where 1=1
+   and t.operate= 'ADD'
+<if test="intro !=null and intro != ''">
+   and t.intro= #{intro}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="introId !=null and introId != ''">
+   and t.intro_id= #{introId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+    </insert>
+
+
+
+    <!-- 查询商品简介信息 add by wuxw 2018-07-03 -->
+    <select id="getCommodityIntroInfo" parameterType="Map" resultType="Map">
+        select  t.intro,t.remark,t.commodity_id,t.commodity_id commodityId,t.intro_id,t.intro_id introId,t.b_id,t.b_id bId,t.user_id,t.user_id userId 
+from commodity_intro t 
+where 1 =1 
+<if test="intro !=null and intro != ''">
+   and t.intro= #{intro}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="introId !=null and introId != ''">
+   and t.intro_id= #{introId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+order by t.create_time desc
+<if test="page != -1 and page != null ">
+   limit #{page}, #{row}
+</if> 
+
+    </select>
+
+
+
+
+    <!-- 修改商品简介信息 add by wuxw 2018-07-03 -->
+    <update id="updateCommodityIntroInfoInstance" parameterType="Map">
+        update  commodity_intro t set t.status_cd = #{statusCd}
+<if test="newBId != null and newBId != ''">
+,t.b_id = #{newBId}
+</if> 
+<if test="intro !=null and intro != ''">
+, t.intro= #{intro}
+</if> 
+<if test="remark !=null and remark != ''">
+, t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+, t.commodity_id= #{commodityId}
+</if> 
+<if test="userId !=null and userId != ''">
+, t.user_id= #{userId}
+</if> 
+ where 1=1 <if test="introId !=null and introId != ''">
+and t.intro_id= #{introId}
+</if> 
+<if test="bId !=null and bId != ''">
+and t.b_id= #{bId}
+</if> 
+
+    </update>
+
+    <!-- 查询商品简介数量 add by wuxw 2018-07-03 -->
+     <select id="queryCommodityIntrosCount" parameterType="Map" resultType="Map">
+        select  count(1) count 
+from commodity_intro t 
+where 1 =1 
+<if test="intro !=null and intro != ''">
+   and t.intro= #{intro}
+</if> 
+<if test="remark !=null and remark != ''">
+   and t.remark= #{remark}
+</if> 
+<if test="commodityId !=null and commodityId != ''">
+   and t.commodity_id= #{commodityId}
+</if> 
+<if test="introId !=null and introId != ''">
+   and t.intro_id= #{introId}
+</if> 
+<if test="bId !=null and bId != ''">
+   and t.b_id= #{bId}
+</if> 
+<if test="userId !=null and userId != ''">
+   and t.user_id= #{userId}
+</if> 
+
+
+     </select>
+
+</mapper>

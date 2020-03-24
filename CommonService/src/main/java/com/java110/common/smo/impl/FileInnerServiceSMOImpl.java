@@ -33,14 +33,16 @@ public class FileInnerServiceSMOImpl extends BaseServiceSMO implements IFileInne
     @Override
     public String saveFile(@RequestBody FileDto fileDto) {
 
-        //int saveFileFlag = fileServiceDaoImpl.saveFile(BeanConvertUtil.beanCovertMap(fileDto));
-
-        //String fileName = aliOssUploadTemplate.uploadBase64Img(fileDto.getContext());
-        String fileName = ftpUploadTemplate.upload(fileDto.getContext(), java110Properties.getFtpServer(),
-                java110Properties.getFtpPort(), java110Properties.getFtpUserName(),
-                java110Properties.getFtpUserPassword(), java110Properties.getFtpPath());
-
-        return fileName;
+        boolean upload2Oss = fileDto.isUpload2Oss();
+        if (upload2Oss) {
+            String fileName = aliOssUploadTemplate.uploadBase64Img(fileDto.getContext());
+            return fileName;
+        } else {
+            String fileName = ftpUploadTemplate.upload(fileDto.getContext(), java110Properties.getFtpServer(),
+                    java110Properties.getFtpPort(), java110Properties.getFtpUserName(),
+                    java110Properties.getFtpUserPassword(), java110Properties.getFtpPath());
+            return fileName;
+        }
     }
 
     @Override

@@ -146,7 +146,10 @@ public final class PrivilegeCodeConstant {
     //巡检计划权限编码
     public static final String AGENT_HAS_LIST_INSPECTION_PLAN = "502020021268740005";
 
-
+    // 商城权限
+    public static final String PRIVILEGE_MALL = "502020021268740006";
+    // OSS 权限
+    public static final String PRIVILEGE_OSS = "502020021268740007";
 
 
 }

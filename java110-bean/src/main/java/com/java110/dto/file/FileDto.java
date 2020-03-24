@@ -17,6 +17,8 @@ public class FileDto  implements Serializable {
 
     private String fileSaveName;
 
+    private boolean upload2Oss;
+
     public String getFileId() {
         return fileId;
     }
@@ -72,4 +74,102 @@ public class FileDto  implements Serializable {
     public void setFileSaveName(String fileSaveName) {
         this.fileSaveName = fileSaveName;
     }
+
+    public boolean isUpload2Oss() {
+        return upload2Oss;
+    }
+
+    public void setUpload2Oss(boolean upload2Oss) {
+        this.upload2Oss = upload2Oss;
+    }
+
+    public static final class FileDtoBuilder {
+        private String fileId;
+        private String fileName;
+        private String communityId;
+        private String context;
+        private String statusCd;
+        private String suffix;
+        private String fileSaveName;
+
+        private FileDtoBuilder() {
+        }
+
+        public static FileDtoBuilder aFileDto() {
+            return new FileDtoBuilder();
+        }
+
+        public FileDtoBuilder withFileId(String fileId) {
+            this.fileId = fileId;
+            return this;
+        }
+
+        public FileDtoBuilder withFileName(String fileName) {
+            this.fileName = fileName;
+            return this;
+        }
+
+        public FileDtoBuilder withCommunityId(String communityId) {
+            this.communityId = communityId;
+            return this;
+        }
+
+        public FileDtoBuilder withContext(String context) {
+            this.context = context;
+            return this;
+        }
+
+        public FileDtoBuilder withStatusCd(String statusCd) {
+            this.statusCd = statusCd;
+            return this;
+        }
+
+        public FileDtoBuilder withSuffix(String suffix) {
+            this.suffix = suffix;
+            return this;
+        }
+
+        public FileDtoBuilder withFileSaveName(String fileSaveName) {
+            this.fileSaveName = fileSaveName;
+            return this;
+        }
+
+        public FileDto build() {
+            FileDto fileDto = new FileDto();
+            fileDto.setFileId(fileId);
+            fileDto.setFileName(fileName);
+            fileDto.setCommunityId(communityId);
+            fileDto.setContext(context);
+            fileDto.setStatusCd(statusCd);
+            fileDto.setSuffix(suffix);
+            fileDto.setFileSaveName(fileSaveName);
+            return fileDto;
+        }
+    }
+
+
+    public static final class AliOssBuilder {
+        private String context;
+
+        private AliOssBuilder() {
+        }
+
+        public static AliOssBuilder aFileDto() {
+            return new AliOssBuilder();
+        }
+
+        public AliOssBuilder withContext(String context) {
+            this.context = context;
+            return this;
+        }
+
+        public FileDto build() {
+            FileDto fileDto = new FileDto();
+            fileDto.setContext(context);
+            fileDto.setUpload2Oss(true);
+            return fileDto;
+        }
+    }
+
+
 }
