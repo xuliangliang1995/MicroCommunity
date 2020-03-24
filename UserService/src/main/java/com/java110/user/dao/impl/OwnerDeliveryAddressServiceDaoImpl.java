@@ -110,6 +110,18 @@ public class OwnerDeliveryAddressServiceDaoImpl extends BaseServiceDao implement
         }
     }
 
+    /*
+    * 删除业主收获地址信息
+    * */
+    @Override
+    public void deleteBusinessOwnerDeliveryAddressInfo(Map info) throws DAOException {
+        logger.debug("删除业主收货地址信息Instance 入参 info : {}",info);
+        int deleteFlag = sqlSessionTemplate.delete("ownerDeliveryAddressServiceDaoImpl.deleteOwnerDeliveryAddressInfoInstance",info);
+        if(deleteFlag < 1){
+            throw new DAOException(ResponseConstant.RESULT_PARAM_ERROR,"删除业主收货地址信息Instance数据失败："+ JSONObject.toJSONString(info));
+        }
+    }
+
      /**
      * 查询业主收货地址数量
      * @param info 业主收货地址信息

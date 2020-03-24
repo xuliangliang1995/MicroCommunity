@@ -3,6 +3,8 @@ package com.java110.api.listener.owner;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.java110.api.listener.AbstractServiceApiDataFlowListener;
+import com.java110.core.smo.owner.IOwnerDeliveryAddressInnerServiceSMO;
+import com.java110.dto.owner.OwnerDeliveryAddressDto;
 import com.java110.utils.constant.*;
 import com.java110.utils.exception.ListenerExecuteException;
 import com.java110.utils.util.Assert;
@@ -12,6 +14,7 @@ import com.java110.core.smo.community.ICommunityInnerServiceSMO;
 import com.java110.dto.CommunityMemberDto;
 import com.java110.entity.center.AppService;
 import com.java110.event.service.api.ServiceDataFlowEvent;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 删除小区楼信息
@@ -31,6 +35,9 @@ public class DeleteOwnerListener extends AbstractServiceApiDataFlowListener {
 
     @Autowired
     private ICommunityInnerServiceSMO communityInnerServiceSMOImpl;
+
+    @Autowired
+    private IOwnerDeliveryAddressInnerServiceSMO ownerDeliveryAddressInnerServiceSMOImpl;
 
     @Override
     public String getServiceCode() {
@@ -70,6 +77,11 @@ public class DeleteOwnerListener extends AbstractServiceApiDataFlowListener {
             businesses.add(exitCommunityMember(paramObj));
         }
 
+        // 删除收获地址
+        Optional<JSONObject> deleteOwnerBusiness = deleteDeliveryAddress(paramObj, dataFlowContext);
+        if (deleteOwnerBusiness.isPresent()) {
+            businesses.add(deleteOwnerBusiness.get());
+        }
 
         JSONObject paramInObj = super.restToCenterProtocol(businesses, dataFlowContext.getRequestCurrentHeaders());
 
@@ -79,6 +91,31 @@ public class DeleteOwnerListener extends AbstractServiceApiDataFlowListener {
         ResponseEntity<String> responseEntity = this.callService(dataFlowContext, service.getServiceCode(), paramInObj);
 
         dataFlowContext.setResponseEntity(responseEntity);
+    }
+
+    /**
+     * 删除业主/业主成员收获地址
+     * @param paramInJson 接口调用放传入入参
+     * @return 订单服务能够接受的报文
+     * */
+    private Optional<JSONObject> deleteDeliveryAddress(JSONObject paramInJson, DataFlowContext dataFlowContext) {
+        OwnerDeliveryAddressDto addressDto = ownerDeliveryAddressInnerServiceSMOImpl.getOwnerDeliveryAddress(paramInJson.getString("memberId"));
+        JSONObject business = null;
+        if (null != addressDto) {
+            business = JSONObject.parseObject("{\"datas\":{}}");
+            business.put(CommonConstant.HTTP_BUSINESS_TYPE_CD, BusinessTypeConstant.BUSINESS_TYPE_DELETE_OWNER_DELIVERY_ADDRESS_INFO);
+            business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
+            business.put(CommonConstant.HTTP_INVOKE_MODEL, CommonConstant.HTTP_INVOKE_MODEL_S);
+            JSONObject businessOwnerDeliveryAddress = new JSONObject();
+            /*businessOwnerDeliveryAddress.put("companyName", paramInJson.getString("companyName"));
+            businessOwnerDeliveryAddress.put("companyFloor", paramInJson.getIntValue("companyFloor"));
+            businessOwnerDeliveryAddress.put("memberId", paramInJson.getString("memberId"));
+            businessOwnerDeliveryAddress.put("ownerId", paramInJson.getString("ownerId"));
+            businessOwnerDeliveryAddress.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));*/
+            businessOwnerDeliveryAddress.put("addressId", addressDto.getAddressId());
+            business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessOwnerDeliveryAddress", businessOwnerDeliveryAddress);
+        }
+        return Optional.ofNullable(business);
     }
 
     /**
