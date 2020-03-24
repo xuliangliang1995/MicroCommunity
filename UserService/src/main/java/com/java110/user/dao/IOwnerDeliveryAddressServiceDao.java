@@ -43,8 +43,12 @@ public interface IOwnerDeliveryAddressServiceDao {
      */
     void saveOwnerDeliveryAddressInfoInstance(Map info) throws DAOException;
 
-
-
+    /**
+     * 删除 业主收货地址信息 Business数据到 Instance中
+     * @param info
+     * @throws DAOException DAO异常
+     */
+    void deleteBusinessOwnerDeliveryAddressInfo(Map info) throws DAOException;
 
     /**
      * 查询业主收货地址信息（instance过程）
