@@ -1,6 +1,7 @@
 package com.java110.web.components.file;
 
 import com.java110.core.context.IPageData;
+import com.java110.web.smo.file.IUploadImgSMO;
 import com.java110.web.smo.file.IUploadVedioSMO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import java.io.IOException;
 public class UploadImgComponent {
 
     @Autowired
-    private IUploadVedioSMO uploadVedioSMOImpl;
+    private IUploadImgSMO uploadImgSMOImpl;
 
 
     /**
@@ -29,15 +30,15 @@ public class UploadImgComponent {
      * @param pd 页面数据封装
      * @return 返回 ResponseEntity 对象
      */
-    public ResponseEntity<Object> upload(IPageData pd, MultipartFile uploadFile) throws IOException {
-        return uploadVedioSMOImpl.upload(pd,uploadFile);
+    public ResponseEntity<Object> upload(IPageData pd) throws IOException {
+        return uploadImgSMOImpl.uploadImg(pd);
     }
 
-    public IUploadVedioSMO getUploadVedioSMOImpl() {
-        return uploadVedioSMOImpl;
+    public IUploadImgSMO getUploadImgSMOImpl() {
+        return uploadImgSMOImpl;
     }
 
-    public void setUploadVedioSMOImpl(IUploadVedioSMO uploadVedioSMOImpl) {
-        this.uploadVedioSMOImpl = uploadVedioSMOImpl;
+    public void setUploadImgSMOImpl(IUploadImgSMO uploadImgSMOImpl) {
+        this.uploadImgSMOImpl = uploadImgSMOImpl;
     }
 }
