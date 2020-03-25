@@ -222,23 +222,8 @@
                         return false;
                     }
                     var reader = new FileReader(); //新建FileReader对象
-                    reader.readAsArrayBuffer(file); //读取为base64
+                    reader.readAsDataURL(file); //读取为base64
                     reader.onloadend = function (e) {
-                        vc.http.post("uploadImg", "upload", {
-                            img: reader.result,
-                        },
-                        {
-                            // emulateJSON: true,
-                            headers: {
-                                "Content-Type": "multipart/form-data",
-                            }
-                        },
-                        function(resText, res) {
-                            console.log(resText, '成功的res', res);
-                        },
-                        function(errText, err){
-                            console.log(errText, '爱仕达多', err);
-                        })
                         vc.component.addOwnerInfo.ownerPhoto = reader.result;
                     }
                 }
