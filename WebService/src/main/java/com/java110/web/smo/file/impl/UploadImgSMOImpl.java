@@ -1,7 +1,6 @@
 package com.java110.web.smo.file.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.java110.core.client.RestTemplate;
 import com.java110.core.component.BaseComponentSMO;
 import com.java110.core.context.IPageData;
 import com.java110.utils.constant.PrivilegeCodeConstant;
@@ -13,6 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author xuliangliang
