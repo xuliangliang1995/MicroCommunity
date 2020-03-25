@@ -917,5 +917,53 @@ public class BusinessTypeConstant {
      */
     public static final String BUSINESS_TYPE_DELETE_INSPECTION_PLAN ="520200050001";
 
+    /**
+     * 保存商品
+     */
+    public static final String BUSINESS_TYPE_SAVE_COMMODITY = "600000010001";
+    /**
+     * 更新商品
+     */
+    public static final String BUSINESS_TYPE_UPDATE_COMMODITY = "600000040001";
+    /**
+     * 删除商品
+     */
+    public static final String BUSINESS_TYPE_DELETE_COMMODITY = "600000050001";
+    /**
+     * 保存商品配图
+     */
+    public static final String BUSINESS_TYPE_SAVE_COMMODITY_PHOTO = "600100010001";
+    /**
+     * 更新商品配图
+     */
+    public static final String BUSINESS_TYPE_UPDATE_COMMODITY_PHOTO = "600100040001";
+    /**
+     * 删除商品配图
+     */
+    public static final String BUSINESS_TYPE_DELETE_COMMODITY_PHOTO = "600100050001";
+    /**
+     * 保存商品简介
+     */
+    public static final String BUSINESS_TYPE_SAVE_COMMODITY_INTRO = "600200010001";
+    /**
+     * 更新商品简介
+     */
+    public static final String BUSINESS_TYPE_UPDATE_COMMODITY_INTRO = "600200040001";
+    /**
+     * 删除商品简介
+     */
+    public static final String BUSINESS_TYPE_DELETE_COMMODITY_INTRO = "600200050001";
+    /**
+     * 添加商品库存
+     */
+    public static final String BUSINESS_TYPE_SAVE_COMMODITY_STOCKPILE = "600300030001";
+    /**
+     * 更新商品库存
+     */
+    public static final String BUSINESS_TYPE_UPDATE_COMMODITY_STOCKPILE = "600300040001";
+    /**
+     * 删除商品库存
+     */
+    public static final String BUSINESS_TYPE_DELETE_COMMODITY_STOCKPILE = "600300050001";
 
 }

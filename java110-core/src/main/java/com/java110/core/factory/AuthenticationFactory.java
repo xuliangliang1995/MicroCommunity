@@ -411,7 +411,7 @@ public class AuthenticationFactory {
 
     }*/
     public static void main(String[] args) {
-        System.out.println(AuthenticationFactory.passwdMd5("xl2020"));
+        System.out.println(AuthenticationFactory.passwdMd5("password"));
     }
 }
 
