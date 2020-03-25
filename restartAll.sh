@@ -10,3 +10,4 @@ docker-compose -f ./WebService/docker/docker-compose.yml       restart;
 docker-compose -f ./FeeService/docker/docker-compose.yml       restart;
 docker-compose -f ./CommonService/docker/docker-compose.yml       restart;
 docker-compose -f ./AppFrontService/docker/docker-compose.yml     restart;
+docker-compose -f ./MallService/docker/docker-compose.yml     restart;

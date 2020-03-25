@@ -1,0 +1,27 @@
+version: '2'
+services:
+   mallservice:
+       container_name: mallservice-1
+       build:
+          context: .
+          dockerfile: Dockerfile
+       restart: always
+       ports:
+       - "8000:8000"
+       volumes:
+       - ../target/MallService.jar:/target/MallService.jar
+       - /etc/hosts:/etc/hosts
+       - /etc/localtime:/etc/localtime
+       networks:
+       - java110-net
+       mem_limit: 2048m
+#       extra_hosts:
+#       - "dev.java110.com:192.168.8.143"
+#       - "dev.db.java110.com:192.168.8.143"
+#       - "dev.zk.java110.com:192.168.8.143"
+#       - "dev.kafka.java110.com:192.168.8.143"
+#       - "dev.redis.java110.com:192.168.8.143"
+#       - "api.java110.com:192.168.8.143"
+networks:
+  java110-net:
+    external: true

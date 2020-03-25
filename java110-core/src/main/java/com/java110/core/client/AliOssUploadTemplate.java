@@ -25,6 +25,7 @@ public class AliOssUploadTemplate {
     static final String ACCESS_KEY_ID = "oCfGqNjz6HcOdbjr";
     static final String ACCESS_KEY_SECRET = "5XNJhIZe2zcko3V8yXH3ICQ3tQIAuB";
     static final String BUCKET_NAME = "jzb-ka-test-2015";
+    static final String PREFIX = "https://jzb-ka-test-2015.oss-cn-beijing.aliyuncs.com/";
     static final OSSClient CLIENT = new OSSClient(END_POINT, ACCESS_KEY_ID, ACCESS_KEY_SECRET);
 
     /**
@@ -40,7 +41,7 @@ public class AliOssUploadTemplate {
             e.printStackTrace();
             throw new IllegalArgumentException("上传文件失败");
         }
-        return ossKey;
+        return PREFIX.concat(ossKey);
     }
 
     public String uploadBase64Img(String base64Str) {
@@ -65,7 +66,7 @@ public class AliOssUploadTemplate {
             ossKey = ossKey.concat(".").concat(suffix);
         }
         CLIENT.putObject(BUCKET_NAME, ossKey, byteArrayInputStream);
-        return ossKey;
+        return PREFIX.concat(ossKey);
     }
 
     /**
@@ -85,7 +86,7 @@ public class AliOssUploadTemplate {
             e.printStackTrace();
             throw new IllegalArgumentException("上传文件失败");
         }
-        return ossKey;
+        return PREFIX.concat(ossKey);
     }
 
     private String generateOssKey() {

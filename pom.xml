@@ -40,6 +40,7 @@
         <module>HardwareAdapationService</module>
         <module>AppFrontService</module>
         <module>java110-front</module>
+        <module>MallService</module>
     </modules>
 
     <parent>
