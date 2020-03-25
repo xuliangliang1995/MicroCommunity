@@ -58,7 +58,6 @@ public class CommodityServiceSMOImpl extends BaseComponentSMO implements ICommod
     private void validateSaveOwner(IPageData pd) {
         Assert.jsonObjectHaveKey(pd.getReqData(), "communityId", "未包含小区ID");
         Assert.jsonObjectHaveKey(pd.getReqData(), "title", "请求报文中未包含age");
-        Assert.jsonObjectHaveKey(pd.getReqData(), "originalPrice", "请求报文中未包含originalPrice");
         Assert.jsonObjectHaveKey(pd.getReqData(), "currentPrice", "请求报文中未包含currentPrice");
         Assert.jsonObjectHaveKey(pd.getReqData(), "intro", "未包含商品介绍");
     }

@@ -77,7 +77,7 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
         businesses.add(addCommodity(paramObj, dataFlowContext));
 
         // 库存
-        final String PARAM_STOCK = "stock";
+        final String PARAM_STOCK = "stockpile";
         if (paramObj.containsKey(PARAM_STOCK)) {
             businesses.add(addCommodityStockpile(paramObj, dataFlowContext));
         }
