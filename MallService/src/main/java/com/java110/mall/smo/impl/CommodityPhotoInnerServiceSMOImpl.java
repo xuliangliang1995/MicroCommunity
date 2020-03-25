@@ -1,14 +1,13 @@
 package com.java110.mall.smo.impl;
 
 
+import com.java110.core.base.smo.BaseServiceSMO;
 import com.java110.core.smo.commodity.ICommodityPhotoInnerServiceSMO;
+import com.java110.dto.PageDto;
 import com.java110.dto.commodity.CommodityPhotoDto;
+import com.java110.dto.user.UserDto;
 import com.java110.mall.dao.ICommodityPhotoServiceDao;
 import com.java110.utils.util.BeanConvertUtil;
-import com.java110.core.base.smo.BaseServiceSMO;
-import com.java110.core.smo.user.IUserInnerServiceSMO;
-import com.java110.dto.PageDto;
-import com.java110.dto.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,9 +29,6 @@ public class CommodityPhotoInnerServiceSMOImpl extends BaseServiceSMO implements
     @Autowired
     private ICommodityPhotoServiceDao commodityPhotoServiceDaoImpl;
 
-    @Autowired
-    private IUserInnerServiceSMO userInnerServiceSMOImpl;
-
     @Override
     public List<CommodityPhotoDto> queryCommodityPhotos(@RequestBody  CommodityPhotoDto commodityPhotoDto) {
 
@@ -48,14 +44,6 @@ public class CommodityPhotoInnerServiceSMOImpl extends BaseServiceSMO implements
 
         if (commodityPhotos == null || commodityPhotos.size() == 0) {
             return commodityPhotos;
-        }
-
-        String[] userIds = getUserIds(commodityPhotos);
-        //根据 userId 查询用户信息
-        List<UserDto> users = userInnerServiceSMOImpl.getUserInfo(userIds);
-
-        for (CommodityPhotoDto commodityPhoto : commodityPhotos) {
-            refreshCommodityPhoto(commodityPhoto, users);
         }
         return commodityPhotos;
     }
@@ -101,11 +89,4 @@ public class CommodityPhotoInnerServiceSMOImpl extends BaseServiceSMO implements
         this.commodityPhotoServiceDaoImpl = commodityPhotoServiceDaoImpl;
     }
 
-    public IUserInnerServiceSMO getUserInnerServiceSMOImpl() {
-        return userInnerServiceSMOImpl;
-    }
-
-    public void setUserInnerServiceSMOImpl(IUserInnerServiceSMO userInnerServiceSMOImpl) {
-        this.userInnerServiceSMOImpl = userInnerServiceSMOImpl;
-    }
 }

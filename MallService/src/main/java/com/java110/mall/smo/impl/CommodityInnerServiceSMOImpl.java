@@ -1,14 +1,13 @@
 package com.java110.mall.smo.impl;
 
 
-import com.java110.dto.commodity.CommodityDto;
-import com.java110.mall.dao.ICommodityServiceDao;
-import com.java110.utils.util.BeanConvertUtil;
 import com.java110.core.base.smo.BaseServiceSMO;
 import com.java110.core.smo.commodity.ICommodityInnerServiceSMO;
-import com.java110.core.smo.user.IUserInnerServiceSMO;
 import com.java110.dto.PageDto;
+import com.java110.dto.commodity.CommodityDto;
 import com.java110.dto.user.UserDto;
+import com.java110.mall.dao.ICommodityServiceDao;
+import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +29,6 @@ public class CommodityInnerServiceSMOImpl extends BaseServiceSMO implements ICom
     @Autowired
     private ICommodityServiceDao commodityServiceDaoImpl;
 
-    @Autowired
-    private IUserInnerServiceSMO userInnerServiceSMOImpl;
 
     @Override
     public List<CommodityDto> queryCommoditys(@RequestBody  CommodityDto commodityDto) {
@@ -50,13 +47,6 @@ public class CommodityInnerServiceSMOImpl extends BaseServiceSMO implements ICom
             return commoditys;
         }
 
-        String[] userIds = getUserIds(commoditys);
-        //根据 userId 查询用户信息
-        List<UserDto> users = userInnerServiceSMOImpl.getUserInfo(userIds);
-
-        for (CommodityDto commodity : commoditys) {
-            refreshCommodity(commodity, users);
-        }
         return commoditys;
     }
 
@@ -101,11 +91,4 @@ public class CommodityInnerServiceSMOImpl extends BaseServiceSMO implements ICom
         this.commodityServiceDaoImpl = commodityServiceDaoImpl;
     }
 
-    public IUserInnerServiceSMO getUserInnerServiceSMOImpl() {
-        return userInnerServiceSMOImpl;
-    }
-
-    public void setUserInnerServiceSMOImpl(IUserInnerServiceSMO userInnerServiceSMOImpl) {
-        this.userInnerServiceSMOImpl = userInnerServiceSMOImpl;
-    }
 }
