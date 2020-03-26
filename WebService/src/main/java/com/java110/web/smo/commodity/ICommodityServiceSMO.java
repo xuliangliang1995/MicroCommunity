@@ -17,4 +17,12 @@ public interface ICommodityServiceSMO {
      * @return
      */
     ResponseEntity<String> addCommodity(IPageData pd);
+
+
+    /**
+     *
+     * @param pd
+     * @return
+     */
+    ResponseEntity<String> updateCommodity(IPageData pd);
 }

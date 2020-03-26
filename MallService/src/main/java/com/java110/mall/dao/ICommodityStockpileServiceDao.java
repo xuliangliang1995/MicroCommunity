@@ -78,4 +78,11 @@ public interface ICommodityStockpileServiceDao {
      */
     int queryCommodityStockpilesCount(Map info);
 
+    /**
+     * 获取商品库存
+     * @param commodityId
+     * @return
+     */
+    Map getCommodityStockpile(String commodityId);
+
 }

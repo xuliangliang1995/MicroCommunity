@@ -125,5 +125,17 @@ public class CommodityStockpileServiceDaoImpl extends BaseServiceDao implements 
         return Integer.parseInt(businessCommodityStockpileInfos.get(0).get("count").toString());
     }
 
+    /**
+     * 获取商品库存
+     *
+     * @param commodityId
+     * @return
+     */
+    @Override
+    public Map getCommodityStockpile(String commodityId) {
+        logger.debug("获取商品库存 入参 info : {}", commodityId);
+        return sqlSessionTemplate.selectOne("commodityStockpileServiceDaoImpl.getCommodityStockpile", commodityId);
+    }
+
 
 }
