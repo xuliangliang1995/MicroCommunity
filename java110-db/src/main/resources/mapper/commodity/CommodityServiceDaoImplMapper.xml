@@ -7,7 +7,7 @@
     <!-- 保存商品信息 add by wuxw 2018-07-03 -->
        <insert id="saveBusinessCommodityInfo" parameterType="Map">
            insert into business_commodity(
-operate,original_price,show,current_price,remark,commodity_id,community_id,b_id,title,user_id
+operate,original_price,`show`,current_price,remark,commodity_id,community_id,b_id,title,user_id
 ) values (
 #{operate},#{originalPrice},#{show},#{currentPrice},#{remark},#{commodityId},#{communityId},#{bId},#{title},#{userId}
 )
@@ -59,7 +59,7 @@ where 1 =1
     <!-- 保存商品信息至 instance表中 add by wuxw 2018-07-03 -->
     <insert id="saveCommodityInfoInstance" parameterType="Map">
         insert into m_commodity(
-original_price,show,current_price,remark,commodity_id,community_id,b_id,title,user_id
+original_price,`show`,current_price,remark,commodity_id,community_id,b_id,title,user_id
 ) select t.original_price,t.`show`,t.current_price,t.remark,t.commodity_id,t.community_id,t.b_id,t.title,t.user_id from business_commodity t where 1=1
    and t.operate= 'ADD'
 <if test="originalPrice !=null and originalPrice != ''">
