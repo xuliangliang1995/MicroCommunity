@@ -191,6 +191,7 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
         business.put(CommonConstant.HTTP_SEQ, DEFAULT_SEQ);
         business.put(CommonConstant.HTTP_INVOKE_MODEL, CommonConstant.HTTP_INVOKE_MODEL_S);
         JSONObject businessCommodity = new JSONObject();
+        businessCommodity.put("introId", -1);
         businessCommodity.put("commodityId", paramObj.getString("commodityId"));
         businessCommodity.put("intro", paramObj.getString("intro"));
         businessCommodity.put("remark", "");
