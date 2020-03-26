@@ -78,4 +78,11 @@ public interface ICommodityIntroServiceDao {
      */
     int queryCommodityIntrosCount(Map info);
 
+    /**
+     * 根据商品ID获取商品介绍ID
+     * @param commodityId
+     * @return
+     */
+    String getIntroIdByCommodityId(String commodityId);
+
 }

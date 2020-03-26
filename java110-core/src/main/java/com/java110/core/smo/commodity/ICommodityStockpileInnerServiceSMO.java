@@ -3,9 +3,7 @@ package com.java110.core.smo.commodity;
 import com.java110.core.feign.FeignConfiguration;
 import com.java110.dto.commodity.CommodityStockpileDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,4 +37,13 @@ public interface ICommodityStockpileInnerServiceSMO {
      */
     @RequestMapping(value = "/queryCommodityStockpilesCount", method = RequestMethod.POST)
     int queryCommodityStockpilesCount(@RequestBody CommodityStockpileDto commodityStockpileDto);
+
+
+    /**
+     * 商品库存
+     * @param commodityId
+     * @return
+     */
+    @GetMapping(value = "/{commodityId}/stockpile")
+    CommodityStockpileDto getStockpile(@PathVariable("commodityId") String commodityId);
 }
