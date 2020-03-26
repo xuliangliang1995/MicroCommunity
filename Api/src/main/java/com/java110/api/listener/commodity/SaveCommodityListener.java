@@ -127,7 +127,7 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
         businessCommodity.put("commodityId", paramObj.getString("commodityId"));
         businessCommodity.put("version", 1);
         businessCommodity.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
-        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityStockpileInfo", businessCommodity);
+        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityStockpile", businessCommodity);
         return business;
     }
 
@@ -147,7 +147,7 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
         businessCommodity.put("show", 1);
         businessCommodity.put("remark", "");
         businessCommodity.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
-        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityInfo", businessCommodity);
+        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodity", businessCommodity);
         return business;
     }
 
@@ -173,7 +173,7 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
             businessCommodityPhoto.put("remark", "");
             businessCommodityPhoto.put("commodityId", paramObj.getString("commodityId"));
             businessCommodityPhoto.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
-            business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityPhotoInfo", businessCommodityPhoto);
+            business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityPhoto", businessCommodityPhoto);
             objs[i] = business;
         }
         return objs;
@@ -195,7 +195,7 @@ public class SaveCommodityListener extends AbstractServiceApiDataFlowListener {
         businessCommodity.put("intro", paramObj.getString("intro"));
         businessCommodity.put("remark", "");
         businessCommodity.put("userId", dataFlowContext.getRequestCurrentHeaders().get(CommonConstant.HTTP_USER_ID));
-        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityIntroInfo", businessCommodity);
+        business.getJSONObject(CommonConstant.HTTP_BUSINESS_DATAS).put("businessCommodityIntro", businessCommodity);
         return business;
     }
     /**
