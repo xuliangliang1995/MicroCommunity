@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.java110.core.component.BaseComponentSMO;
 import com.java110.core.context.IPageData;
 import com.java110.utils.constant.PrivilegeCodeConstant;
+import com.java110.utils.constant.ServiceCodeConstant;
 import com.java110.utils.constant.ServiceConstant;
 import com.java110.utils.util.Assert;
 import com.java110.web.smo.commodity.ICommodityServiceSMO;
@@ -49,7 +50,7 @@ public class CommodityServiceSMOImpl extends BaseComponentSMO implements ICommod
 
         paramIn.put("userId", pd.getUserId());
         ResponseEntity responseEntity = this.callCenterService(restTemplate, pd, paramIn.toJSONString(),
-                ServiceConstant.SERVICE_API_URL + "/api/commodity.saveCommodity",
+                ServiceConstant.SERVICE_API_URL + "/api/".concat(ServiceCodeConstant.SERVICE_CODE_SAVE_COMMODITY),
                 HttpMethod.POST);
 
         return responseEntity;
