@@ -14,7 +14,7 @@ services:
        - /etc/localtime:/etc/localtime
        networks:
        - java110-net
-       mem_limit: 3072m
+       mem_limit: 2048m
 #       extra_hosts:
 #       - "dev.java110.com:192.168.8.143"
 #       - "dev.db.java110.com:192.168.8.143"
