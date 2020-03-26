@@ -4,7 +4,7 @@
 
         },
         _initMethod() {
-            $('#viewCommodityModal').modal('show');
+            /*$('#viewCommodityModal').modal('show');*/
         },
         _initEvent() {
 
