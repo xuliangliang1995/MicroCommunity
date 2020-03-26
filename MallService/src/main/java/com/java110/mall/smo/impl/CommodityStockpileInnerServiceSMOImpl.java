@@ -9,11 +9,13 @@ import com.java110.dto.user.UserDto;
 import com.java110.mall.dao.ICommodityStockpileServiceDao;
 import com.java110.utils.util.BeanConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName FloorInnerServiceSMOImpl
@@ -81,6 +83,21 @@ public class CommodityStockpileInnerServiceSMOImpl extends BaseServiceSMO implem
     @Override
     public int queryCommodityStockpilesCount(@RequestBody CommodityStockpileDto commodityStockpileDto) {
         return commodityStockpileServiceDaoImpl.queryCommodityStockpilesCount(BeanConvertUtil.beanCovertMap(commodityStockpileDto));    }
+
+    /**
+     * 商品库存
+     *
+     * @param commodityId
+     * @return
+     */
+    @Override
+    public CommodityStockpileDto getStockpile(@PathVariable("commodityId") String commodityId) {
+        Map map = commodityStockpileServiceDaoImpl.getCommodityStockpile(commodityId);
+        if (null != map) {
+            return BeanConvertUtil.covertBean(map, CommodityStockpileDto.class);
+        }
+        return null;
+    }
 
     public ICommodityStockpileServiceDao getCommodityStockpileServiceDaoImpl() {
         return commodityStockpileServiceDaoImpl;

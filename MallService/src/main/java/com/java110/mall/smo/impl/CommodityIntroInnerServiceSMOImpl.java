@@ -83,6 +83,11 @@ public class CommodityIntroInnerServiceSMOImpl extends BaseServiceSMO implements
     public int queryCommodityIntrosCount(@RequestBody CommodityIntroDto commodityIntroDto) {
         return commodityIntroServiceDaoImpl.queryCommodityIntrosCount(BeanConvertUtil.beanCovertMap(commodityIntroDto));    }
 
+    @Override
+    public String getIntroIdByCommodityId(String commodityId) {
+        return commodityIntroServiceDaoImpl.getIntroIdByCommodityId(commodityId);
+    }
+
     public ICommodityIntroServiceDao getCommodityIntroServiceDaoImpl() {
         return commodityIntroServiceDaoImpl;
     }

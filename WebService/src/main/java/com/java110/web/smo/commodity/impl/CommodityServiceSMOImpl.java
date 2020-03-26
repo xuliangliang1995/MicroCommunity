@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @author xuliangliang
  * @Classname CommodityServiceSMOImpl
- * @Description TODO
+ * @Description 商品服务
  * @Date 2020/3/24 14:42
  * @blame Java Team
  */
@@ -41,7 +41,7 @@ public class CommodityServiceSMOImpl extends BaseComponentSMO implements ICommod
     @Override
     public ResponseEntity<String> addCommodity(IPageData pd) {
 
-        validateSaveOwner(pd);
+        validateSaveCommodity(pd);
 
         //校验员工是否有权限操作
         super.checkUserHasPrivilege(pd, restTemplate, PrivilegeCodeConstant.PRIVILEGE_MALL);
@@ -56,7 +56,36 @@ public class CommodityServiceSMOImpl extends BaseComponentSMO implements ICommod
         return responseEntity;
     }
 
-    private void validateSaveOwner(IPageData pd) {
+    /**
+     * @param pd
+     * @return
+     */
+    @Override
+    public ResponseEntity<String> updateCommodity(IPageData pd) {
+        validateUpdateCommodity(pd);
+
+        //校验员工是否有权限操作
+        super.checkUserHasPrivilege(pd, restTemplate, PrivilegeCodeConstant.PRIVILEGE_MALL);
+
+        JSONObject paramIn = JSONObject.parseObject(pd.getReqData());
+
+        paramIn.put("userId", pd.getUserId());
+        ResponseEntity responseEntity = this.callCenterService(restTemplate, pd, paramIn.toJSONString(),
+                ServiceConstant.SERVICE_API_URL + "/api/".concat(ServiceCodeConstant.SERVICE_CODE_UPDATE_COMMODITY),
+                HttpMethod.POST);
+
+        return responseEntity;
+    }
+
+    private void validateSaveCommodity(IPageData pd) {
+        Assert.jsonObjectHaveKey(pd.getReqData(), "communityId", "未包含小区ID");
+        Assert.jsonObjectHaveKey(pd.getReqData(), "title", "请求报文中未包含age");
+        Assert.jsonObjectHaveKey(pd.getReqData(), "currentPrice", "请求报文中未包含currentPrice");
+        Assert.jsonObjectHaveKey(pd.getReqData(), "intro", "未包含商品介绍");
+    }
+
+    private void validateUpdateCommodity(IPageData pd) {
+        Assert.jsonObjectHaveKey(pd.getReqData(), "commodityId", "未包含商品ID");
         Assert.jsonObjectHaveKey(pd.getReqData(), "communityId", "未包含小区ID");
         Assert.jsonObjectHaveKey(pd.getReqData(), "title", "请求报文中未包含age");
         Assert.jsonObjectHaveKey(pd.getReqData(), "currentPrice", "请求报文中未包含currentPrice");

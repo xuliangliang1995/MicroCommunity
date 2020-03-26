@@ -17,35 +17,40 @@ amount,operate,stockpile_id,remark,commodity_id,b_id,version,user_id
        <!-- 查询商品库存信息（Business） add by wuxw 2018-07-03 -->
        <select id="getBusinessCommodityStockpileInfo" parameterType="Map" resultType="Map">
            select  t.amount,t.operate,t.stockpile_id,t.stockpile_id stockpileId,t.remark,t.commodity_id,t.commodity_id commodityId,t.b_id,t.b_id bId,t.version,t.user_id,t.user_id userId 
-from business_commodity_stockpile t 
-where 1 =1 
-<if test="amount !=null and amount != ''">
-   and t.amount= #{amount}
-</if> 
-<if test="operate !=null and operate != ''">
-   and t.operate= #{operate}
-</if> 
-<if test="stockpileId !=null and stockpileId != ''">
-   and t.stockpile_id= #{stockpileId}
-</if> 
-<if test="remark !=null and remark != ''">
-   and t.remark= #{remark}
-</if> 
-<if test="commodityId !=null and commodityId != ''">
-   and t.commodity_id= #{commodityId}
-</if> 
-<if test="bId !=null and bId != ''">
-   and t.b_id= #{bId}
-</if> 
-<if test="version !=null and version != ''">
-   and t.version= #{version}
-</if> 
-<if test="userId !=null and userId != ''">
-   and t.user_id= #{userId}
-</if> 
+            from business_commodity_stockpile t
+            where 1 =1
+            <if test="amount !=null and amount != ''">
+               and t.amount= #{amount}
+            </if>
+            <if test="operate !=null and operate != ''">
+               and t.operate= #{operate}
+            </if>
+            <if test="stockpileId !=null and stockpileId != ''">
+               and t.stockpile_id= #{stockpileId}
+            </if>
+            <if test="remark !=null and remark != ''">
+               and t.remark= #{remark}
+            </if>
+            <if test="commodityId !=null and commodityId != ''">
+               and t.commodity_id= #{commodityId}
+            </if>
+            <if test="bId !=null and bId != ''">
+               and t.b_id= #{bId}
+            </if>
+            <if test="version !=null and version != ''">
+               and t.version= #{version}
+            </if>
+            <if test="userId !=null and userId != ''">
+               and t.user_id= #{userId}
+            </if>
 
        </select>
 
+    <select id="getCommodityStockpile" resultType="Map" parameterType="string">
+        select  t.amount,t.operate,t.stockpile_id,t.stockpile_id stockpileId,t.remark,t.commodity_id,t.commodity_id commodityId,t.b_id,t.b_id bId,t.version,t.user_id,t.user_id userId
+            from business_commodity_stockpile t
+            where t.commodity_id = #{commodityId}
+    </select>
 
 
 
@@ -124,30 +129,31 @@ order by t.create_time desc
     <!-- 修改商品库存信息 add by wuxw 2018-07-03 -->
     <update id="updateCommodityStockpileInfoInstance" parameterType="Map">
         update  commodity_stockpile t set t.status_cd = #{statusCd}
-<if test="newBId != null and newBId != ''">
-,t.b_id = #{newBId}
-</if> 
-<if test="amount !=null and amount != ''">
-, t.amount= #{amount}
-</if> 
-<if test="remark !=null and remark != ''">
-, t.remark= #{remark}
-</if> 
-<if test="commodityId !=null and commodityId != ''">
-, t.commodity_id= #{commodityId}
-</if> 
-<if test="version !=null and version != ''">
-, t.version= #{version}
-</if> 
-<if test="userId !=null and userId != ''">
-, t.user_id= #{userId}
-</if> 
- where 1=1 <if test="stockpileId !=null and stockpileId != ''">
-and t.stockpile_id= #{stockpileId}
-</if> 
-<if test="bId !=null and bId != ''">
-and t.b_id= #{bId}
-</if> 
+        <if test="newBId != null and newBId != ''">
+        ,t.b_id = #{newBId}
+        </if>
+        <if test="amount !=null and amount != ''">
+        , t.amount= #{amount}
+        </if>
+        <if test="remark !=null and remark != ''">
+        , t.remark= #{remark}
+        </if>
+        <if test="commodityId !=null and commodityId != ''">
+        , t.commodity_id= #{commodityId}
+        </if>
+        <if test="version !=null and version != ''">
+        , t.version= #{version}
+        </if>
+        <if test="userId !=null and userId != ''">
+        , t.user_id= #{userId}
+        </if>
+         where 1=1 <if test="stockpileId !=null and stockpileId != ''">
+        and t.stockpile_id= #{stockpileId}
+        </if>
+        <if test="bId !=null and bId != ''">
+        and t.b_id= #{bId}
+        </if>
+         and t.version = #{version} - 1
 
     </update>
 
