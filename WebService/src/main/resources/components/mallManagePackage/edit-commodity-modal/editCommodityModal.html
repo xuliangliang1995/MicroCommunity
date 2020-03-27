@@ -10,14 +10,22 @@
                     <div class="form-group row">
                         <label  class="col-sm-2 col-form-label">配图</label>
                         <div class="col-sm-10">
-                            <img src="http://iph.href.lu/100x100">
-                            <img src="http://iph.href.lu/100x100">
+                            <template v-for="(src, index) in commodityInfo.commodityPhotos"
+                              :key="index">
+                                <div class="commodity-img" @click="removeCommodityPhotos(index)">
+                                    <img :src="src">
+                                </div>
+                            </template>
+                            <template v-if="commodityInfo.commodityPhotos.length < 5">
+                                <div class="commodity-upload-img glyphicon glyphicon-plus"
+                                    @click="emitChoosePhoto"></div>
+                                <input type="file" class="file" accept="images/*" id="uploadOwnerPhoto" hidden @change="choosePhoto($event)">
+                            </template>
                         </div>
-                    </div>
-                    <div class="form-group row">
+                    </div><div class="form-group row">
                         <label  class="col-sm-2 col-form-label">标题</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="请输入">
+                            <input type="text" v-model="commodityInfo.title" class="form-control" placeholder="请输入">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -27,31 +35,36 @@
                                 <div class="col-sm-6">
                                     <div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="haveOriginal" id="noOriginal" value="0" checked>
+                                            <input class="form-check-input" v-model="hasOriginalPrice" type="radio" name="haveOriginal" id="noOriginal" :value="false">
                                             <label class="form-check-label mr-4" for="noOriginal">
                                                 无
                                             </label>
-                                            <input class="form-check-input" type="radio" name="haveOriginal" id="haveOriginal" value="1" checked>
+                                            <input class="form-check-input" v-model="hasOriginalPrice" type="radio" name="haveOriginal" id="haveOriginal" :value="true">
                                             <label class="form-check-label" for="haveOriginal">
                                                 有
                                             </label>
                                         </div>
                                     </div>
-                                    <template>
-                                        <input type="text" class="form-control">
-                                    </template>
                                 </div>
                                 <div class="col-sm-6 row">
                                     <label class="col-sm-3 col-form-label">现价</label>
-                                    <input type="text" class="col-sm-8 form-control">
+                                    <input v-model="commodityInfo.currentPrice" type="number" class="col-sm-6 form-control">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <template v-if="hasOriginalPrice">
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label"> </label>
+                            <div class="col-sm-4">
+                                <input v-model="commodityInfo.originalPrice" type="number" class="form-control">
+                            </div>
+                        </div>
+                    </template>
                     <div class="form-group row">
                         <label  class="col-sm-2 col-form-label">库存</label>
                         <div class="col-sm-10">
-                            <input type="text" class="col-sm-4 form-control"
+                            <input v-model="commodityInfo.stockpile" type="number" class="col-sm-4 form-control"
                                 placeholder="请输入">
                         </div>
                     </div>
@@ -59,12 +72,12 @@
                         <label  class="col-sm-2 col-form-label">介绍</label>
                         <div class="col-sm-10">
                             <vc:create name="wangEditor"
-                                defaultEditor="默认的内容props传递"
                                 parentComponent="editCommodityModal"></vc:create>
                         </div>
                     </div>
-                    <div class="form-group row">
-                       <button class="btn btn-primary text-content">保存/上传</button>
+                    <div class="form-group row text-content">
+                       <button class="btn btn-primary btn-submit-commodity"
+                            @click="createOrChange">{{commodityInfo.commodityId > -1 ? '保存' : '上传'}}</button>
                     </div>
                 </div>
             </div>
