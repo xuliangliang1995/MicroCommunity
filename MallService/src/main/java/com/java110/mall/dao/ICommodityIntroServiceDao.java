@@ -85,4 +85,6 @@ public interface ICommodityIntroServiceDao {
      */
     String getIntroIdByCommodityId(String commodityId);
 
+    String getIntroByCommodityId(String commodityId);
+
 }

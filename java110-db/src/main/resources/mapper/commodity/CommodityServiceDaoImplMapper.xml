@@ -17,38 +17,38 @@ operate,original_price,`show`,current_price,remark,commodity_id,community_id,b_i
        <!-- 查询商品信息（Business） add by wuxw 2018-07-03 -->
        <select id="getBusinessCommodityInfo" parameterType="Map" resultType="Map">
            select  t.operate,t.original_price,t.original_price originalPrice,t.`show`,t.current_price,t.current_price currentPrice,t.remark,t.commodity_id,t.commodity_id commodityId,t.community_id,t.community_id communityId,t.b_id,t.b_id bId,t.title,t.user_id,t.user_id userId 
-from business_commodity t 
-where 1 =1 
-<if test="operate !=null and operate != ''">
-   and t.operate= #{operate}
-</if> 
-<if test="originalPrice !=null and originalPrice != ''">
-   and t.original_price= #{originalPrice}
-</if> 
-<if test="show !=null and show != ''">
-   and t.`show`= #{show}
-</if> 
-<if test="currentPrice !=null and currentPrice != ''">
-   and t.current_price= #{currentPrice}
-</if> 
-<if test="remark !=null and remark != ''">
-   and t.remark= #{remark}
-</if> 
-<if test="commodityId !=null and commodityId != ''">
-   and t.commodity_id= #{commodityId}
-</if> 
-<if test="communityId !=null and communityId != ''">
-   and t.community_id= #{communityId}
-</if> 
-<if test="bId !=null and bId != ''">
-   and t.b_id= #{bId}
-</if> 
-<if test="title !=null and title != ''">
-   and t.title= #{title}
-</if> 
-<if test="userId !=null and userId != ''">
-   and t.user_id= #{userId}
-</if> 
+            from business_commodity t
+            where 1 =1
+            <if test="operate !=null and operate != ''">
+               and t.operate= #{operate}
+            </if>
+            <if test="originalPrice !=null and originalPrice != ''">
+               and t.original_price= #{originalPrice}
+            </if>
+            <if test="show !=null and show != ''">
+               and t.`show`= #{show}
+            </if>
+            <if test="currentPrice !=null and currentPrice != ''">
+               and t.current_price= #{currentPrice}
+            </if>
+            <if test="remark !=null and remark != ''">
+               and t.remark= #{remark}
+            </if>
+            <if test="commodityId !=null and commodityId != ''">
+               and t.commodity_id= #{commodityId}
+            </if>
+            <if test="communityId !=null and communityId != ''">
+               and t.community_id= #{communityId}
+            </if>
+            <if test="bId !=null and bId != ''">
+               and t.b_id= #{bId}
+            </if>
+            <if test="title !=null and title != ''">
+               and t.title like concat('%', #{title}, '%')
+            </if>
+            <if test="userId !=null and userId != ''">
+               and t.user_id= #{userId}
+            </if>
 
        </select>
 

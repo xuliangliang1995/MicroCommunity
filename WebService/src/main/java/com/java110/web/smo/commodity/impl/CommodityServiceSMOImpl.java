@@ -77,6 +77,38 @@ public class CommodityServiceSMOImpl extends BaseComponentSMO implements ICommod
         return responseEntity;
     }
 
+    /**
+     * 商品列表
+     *
+     * @param pd
+     * @return
+     */
+    @Override
+    public ResponseEntity<String> listCommodities(IPageData pd) {
+        validateListCommodity(pd);
+
+        JSONObject paramIn = JSONObject.parseObject(pd.getReqData());
+        paramIn.put("userId", pd.getUserId());
+        paramIn.put("communityId", paramIn.getString("communityId"));
+        paramIn.put("title", paramIn.getString("title"));
+        paramIn.put("show", paramIn.getString("show"));
+
+        ResponseEntity responseEntity = this.callCenterService(restTemplate, pd, "",
+                ServiceConstant.SERVICE_API_URL + "/api/"
+                        .concat(ServiceCodeConstant.SERVICE_CODE_LIST_COMMODITY)
+                        .concat(mapToUrlParam(paramIn)),
+                HttpMethod.GET);
+
+        return responseEntity;
+    }
+
+    private void validateListCommodity(IPageData pd) {
+        Assert.jsonObjectHaveKey(pd.getReqData(), "communityId", "未包含小区ID");
+        /*Assert.jsonObjectHaveKey(pd.getReqData(), "title", "请求报文中未包含title");
+        Assert.jsonObjectHaveKey(pd.getReqData(), "show", "未包含show");*/
+    }
+
+
     private void validateSaveCommodity(IPageData pd) {
         Assert.jsonObjectHaveKey(pd.getReqData(), "communityId", "未包含小区ID");
         Assert.jsonObjectHaveKey(pd.getReqData(), "title", "请求报文中未包含age");

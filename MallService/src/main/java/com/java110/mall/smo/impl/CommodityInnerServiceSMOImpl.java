@@ -4,16 +4,24 @@ package com.java110.mall.smo.impl;
 import com.java110.core.base.smo.BaseServiceSMO;
 import com.java110.core.smo.commodity.ICommodityInnerServiceSMO;
 import com.java110.dto.PageDto;
+import com.java110.dto.commodity.CommodityDetailDto;
 import com.java110.dto.commodity.CommodityDto;
+import com.java110.dto.commodity.converter.CommodityDetail;
+import com.java110.dto.commodity.converter.ICommodityDto2DetailDto;
 import com.java110.dto.user.UserDto;
+import com.java110.mall.dao.ICommodityIntroServiceDao;
+import com.java110.mall.dao.ICommodityPhotoServiceDao;
 import com.java110.mall.dao.ICommodityServiceDao;
+import com.java110.mall.dao.ICommodityStockpileServiceDao;
 import com.java110.utils.util.BeanConvertUtil;
+import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName FloorInnerServiceSMOImpl
@@ -28,10 +36,18 @@ public class CommodityInnerServiceSMOImpl extends BaseServiceSMO implements ICom
 
     @Autowired
     private ICommodityServiceDao commodityServiceDaoImpl;
+    @Autowired
+    private ICommodityIntroServiceDao commodityIntroServiceDaoImpl;
+    @Autowired
+    private ICommodityPhotoServiceDao commodityPhotoServiceDaoImpl;
+    @Autowired
+    private ICommodityStockpileServiceDao commodityStockpileServiceDaoImpl;
+    @Autowired
+    private ICommodityDto2DetailDto commodityDto2DetailDtoImpl;
 
 
     @Override
-    public List<CommodityDto> queryCommoditys(@RequestBody  CommodityDto commodityDto) {
+    public List<CommodityDetailDto> queryCommoditys(@RequestBody  CommodityDto commodityDto) {
 
         //校验是否传了 分页信息
 
@@ -44,10 +60,35 @@ public class CommodityInnerServiceSMOImpl extends BaseServiceSMO implements ICom
         List<CommodityDto> commoditys = BeanConvertUtil.covertBeanList(commodityServiceDaoImpl.getCommodityInfo(BeanConvertUtil.beanCovertMap(commodityDto)), CommodityDto.class);
 
         if (commoditys == null || commoditys.size() == 0) {
-            return commoditys;
+            return Collections.emptyList();
         }
+        return commoditys.stream().map(commodity -> {
+            // 简介
+            CommodityDetail detail = new CommodityDetail();
+            detail.setIntro(commodityIntroServiceDaoImpl.getIntroByCommodityId(commodity.getCommodityId()));
+            // 库存
+            Map stockpile = commodityStockpileServiceDaoImpl.getCommodityStockpile(commodity.getCommodityId());
+            detail.setStockpile(
+                    Optional.ofNullable(stockpile)
+                    .map(s -> s.getOrDefault("stockpile", 0))
+                    .filter(s -> NumberUtils.isDigits(s.toString()))
+                    .map(String::valueOf)
+                    .map(Integer::valueOf)
+                    .orElse(0)
+            );
+            // 配图
+            Map photoQueryMap = new HashMap();
+            photoQueryMap.put("commodityId", commodity.getCommodityId());
+            String commodityPhotos = commodityPhotoServiceDaoImpl.getCommodityPhotoInfo(photoQueryMap).stream()
+                    .map(m -> m.getOrDefault("photo", null))
+                    .map(String::valueOf)
+                    .filter(StringUtils::isNotEmpty)
+                    .reduce((a, b) -> a + "," + b)
+                    .orElse("");
+            detail.setCommodityPhotos(commodityPhotos);
 
-        return commoditys;
+            return commodityDto2DetailDtoImpl.commodityDto2DetailDto(commodity, detail);
+        }).collect(Collectors.toList());
     }
 
     /**
