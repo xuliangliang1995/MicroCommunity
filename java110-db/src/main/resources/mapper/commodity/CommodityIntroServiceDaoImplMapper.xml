@@ -47,6 +47,10 @@ where 1 =1
         select  t.intro_id from business_commodity_intro t where t.commodity_id = #{commodityId}
     </select>
 
+    <select id="getIntroByCommodityId" resultType="string" parameterType="string">
+        select  t.intro from business_commodity_intro t where t.commodity_id = #{commodityId}
+    </select>
+
 
 
     <!-- 保存商品简介信息至 instance表中 add by wuxw 2018-07-03 -->

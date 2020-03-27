@@ -25,4 +25,11 @@ public interface ICommodityServiceSMO {
      * @return
      */
     ResponseEntity<String> updateCommodity(IPageData pd);
+
+    /**
+     * 商品列表
+     * @param pd
+     * @return
+     */
+    ResponseEntity<String> listCommodities(IPageData pd);
 }

@@ -5,14 +5,13 @@
             /*editorContent: null,*/
         },
         propTypes: {
-            defaultEditor: vc.propTypes.string,
             parentComponent: vc.propTypes.string,
         },
         _initMethod() {
             vc.component.initWangEditor();
         },
         _initEvent() {
-
+            vc.on('wangEditor', 'setWangEditorContent', vc.component.setWangEditorContent)
         },
         methods: {
             /**
@@ -45,7 +44,6 @@
                     vc.emit($props.parentComponent, 'changeEditor', html);
                 }
                 vc.component.editor.create();
-                vc.component.setWangEditorContent($props.defaultEditor);
             },
             /**
              * 改变富文本的编辑状态

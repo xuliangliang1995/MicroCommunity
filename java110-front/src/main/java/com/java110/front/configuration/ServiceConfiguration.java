@@ -13,6 +13,7 @@ public class ServiceConfiguration {
     @Bean
     public FilterRegistrationBean jwtFilter() {
         StringBuffer exclusions = new StringBuffer();
+        exclusions.append("/callComponent/listCommodity/*,");
         exclusions.append("/callComponent/login/*,");
         exclusions.append("/callComponent/register/*,");
         exclusions.append("/callComponent/validate-code/*,");

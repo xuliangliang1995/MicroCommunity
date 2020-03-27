@@ -109,6 +109,7 @@ public class OrderServiceApplicationStart {
 
         //因为好多朋友启动时 不加 参数-Dcache 所以启动时检测 redis 中是否存在 java110_hc_version
         String mapping = MappingCache.getValue("java110_hc_version");
+        //mapping = "";
         if(StringUtil.isEmpty(mapping)){
             ICenterServiceCacheSMO centerServiceCacheSMO = (ICenterServiceCacheSMO) ApplicationContextFactory.getBean("centerServiceCacheSMOImpl");
             centerServiceCacheSMO.startFlush();

@@ -3,6 +3,7 @@ package com.java110.web.smo.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.java110.utils.constant.PrivilegeCodeConstant;
 import com.java110.utils.constant.ResponseConstant;
+import com.java110.utils.constant.ServiceCodeConstant;
 import com.java110.utils.constant.ServiceConstant;
 import com.java110.utils.exception.SMOException;
 import com.java110.utils.util.Assert;
@@ -110,7 +111,7 @@ public class OwnerServiceSMOImpl extends BaseComponentSMO implements IOwnerServi
         String storeTypeCd = JSONObject.parseObject(responseEntity.getBody().toString()).getString("storeTypeCd");
         //数据校验是否 商户是否入驻该小区
         super.checkStoreEnterCommunity(pd, storeId, storeTypeCd, communityId, restTemplate);
-        String apiUrl = ServiceConstant.SERVICE_API_URL + "/api/owner.queryOwnerMembers" + mapToUrlParam(paramIn);
+        String apiUrl = ServiceConstant.SERVICE_API_URL + "/api/".concat(ServiceCodeConstant.SERVICE_CODE_QUERY_OWNER_MEMBER) + mapToUrlParam(paramIn);
 
 
         responseEntity = this.callCenterService(restTemplate, pd, "",

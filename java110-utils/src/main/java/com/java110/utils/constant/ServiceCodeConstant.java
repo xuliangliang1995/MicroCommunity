@@ -655,6 +655,10 @@ public class ServiceCodeConstant {
 
     // 更新商品
     public static final String SERVICE_CODE_UPDATE_COMMODITY = "commodity.updateCommodity";
+    // 商品列表
+    public static final String SERVICE_CODE_LIST_COMMODITY = "commodity.listCommodity";
     // 上传文件到阿里云 OSS
     public static final String SERVICE_CODE_UPLOAD_IMAGE_TO_OSS = "oss.uploadImg";
+
+
 }

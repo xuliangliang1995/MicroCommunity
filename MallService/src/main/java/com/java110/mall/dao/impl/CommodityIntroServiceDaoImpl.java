@@ -137,5 +137,11 @@ public class CommodityIntroServiceDaoImpl extends BaseServiceDao implements ICom
         return sqlSessionTemplate.selectOne("commodityIntroServiceDaoImpl.getIntroIdByCommodityId", commodityId);
     }
 
+    @Override
+    public String getIntroByCommodityId(String commodityId) {
+        logger.debug("查询商品简介数据 入参 info : {}",commodityId);
+        return sqlSessionTemplate.selectOne("commodityIntroServiceDaoImpl.getIntroByCommodityId", commodityId);
+    }
+
 
 }

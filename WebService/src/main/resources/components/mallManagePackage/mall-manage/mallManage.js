@@ -12,11 +12,11 @@
     };
     vc.extends({
         data: {
-            orderAndMallTab: orderAndMallTab.ORDER_TAB,
+            orderAndMallTab: orderAndMallTab.MALL_TAB,
             shelvesTab: shelvesTab.SHELVES_ON_TAB,
         },
         _initMethod() {
-            this.Vue.config.devtools = true;
+
         },
         _initEvent() {
 
